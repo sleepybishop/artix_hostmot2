@@ -1,0 +1,3 @@
+So the board is 65mm x 45mm. There are holes 2.5mm away from each side in every corner and have a diameter of 2.2mm. The USB port is at (4.6, 35.2) and has an opening 3.5mm tall and 9mm wide. The main connectors are 15mm long, 4mm wide, and 3.5mm tall (female version). They have centers located at (26.5, 40.5), (52, 40.5), (30.5, 4.5), (52, 4.5).
+
+Both boards have inductors that are about 5mm tall on the top side. The tallest part on the Au's bottom side is 2.5mm and the Cu is 1.5mm
