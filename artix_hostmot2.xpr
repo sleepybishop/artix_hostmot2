@@ -835,50 +835,10 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/card/Sixi25_x9card.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/card/Sixi25_x9card.vhd"/>
-          <Attr Name="ImportTime" Val="1475606053"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/card/i25_x9card.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/card/i25_x9card.vhd"/>
-          <Attr Name="ImportTime" Val="1475606053"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/imports/src/card/alchitry_au_card.vhd">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/card/alchitry_au_card.vhd"/>
           <Attr Name="ImportTime" Val="1476115214"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/card/i92_x9card.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/card/i92_x9card.vhd"/>
-          <Attr Name="ImportTime" Val="1475606053"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/card/i90_x9card.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/card/i90_x9card.vhd"/>
-          <Attr Name="ImportTime" Val="1475606053"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/pin/PIN_SAIN_5AXIS_34.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/pin/PIN_SAIN_5AXIS_34.vhd"/>
-          <Attr Name="ImportTime" Val="1475625515"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -891,74 +851,10 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/pin/PIN_7I76x2_34.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/pin/PIN_7I76x2_34.vhd"/>
-          <Attr Name="ImportTime" Val="1473291010"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/pin/PIN_FALLBACK_34.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/pin/PIN_FALLBACK_34.vhd"/>
-          <Attr Name="ImportTime" Val="1473291010"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/pin/PIN_G540_7I76_34.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/pin/PIN_G540_7I76_34.vhd"/>
-          <Attr Name="ImportTime" Val="1473323337"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/pin/PIN_G540x2_34.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/pin/PIN_G540x2_34.vhd"/>
-          <Attr Name="ImportTime" Val="1473291010"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/pin/PIN_JUSTIO_72.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/pin/PIN_JUSTIO_72.vhd"/>
-          <Attr Name="ImportTime" Val="1473291010"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/pin/PIN_ULTIMAKER_72.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/pin/PIN_ULTIMAKER_72.vhd"/>
-          <Attr Name="ImportTime" Val="1482382318"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/pin/PIN_SHIELD_72.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/pin/PIN_SHIELD_72.vhd"/>
-          <Attr Name="ImportTime" Val="1516077991"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/imports/src/pin/PIN_ULTIMAKER_72.vhd">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/pin/PIN_ULTIMAKER_72.vhd"/>
           <Attr Name="ImportTime" Val="1516344833"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/pin/PIN_G540_7I76_CUSTOM_34.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/pin/PIN_G540_7I76_CUSTOM_34.vhd"/>
-          <Attr Name="ImportTime" Val="1474486195"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
