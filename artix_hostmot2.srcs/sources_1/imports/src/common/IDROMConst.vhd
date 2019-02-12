@@ -115,8 +115,8 @@ package IDROMConst is
 	constant BoardName7I93 : std_logic_vector(31 downto 0) := x"33394937";		-- 7I93
 	constant BoardName7I96 : std_logic_vector(31 downto 0) := x"36394937";		-- 7I96
 	constant BoardName7I97 : std_logic_vector(31 downto 0) := x"37394937";		-- 7I97
-	constant BoardNameEMBM : std_logic_vector(31 downto 0) := x"4D424D45";		-- EMBM
-	constant BoardNameMOJO : std_logic_vector(31 downto 0) := x"4F4A4F4D";		-- MOJO
+	constant BoardNameALCX : std_logic_vector(31 downto 0) := x"48434c41";		-- ALCH
+	constant BoardNameXXAU : std_logic_vector(31 downto 0) := x"55415858";		-- XXAU
 	
 	constant IDROMOffset : std_logic_vector(31 downto 0) := x"0000"&IDROMAddr&x"00"; -- note need to change if pitch changed
 	constant IDROMWEnAddr : std_logic_vector(7 downto 0) := x"08";
