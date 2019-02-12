@@ -121,17 +121,8 @@ entity tophm2 is -- for mojo v3 spi
 				COM_SPIIN : in std_logic;
 				COM_SPIOUT : out std_logic;
 				COM_SPICS : in std_logic;
-				SPICLK : in  std_logic;                   -- avr spi interface (FPGA is slave)
-				SPIIN :  out std_logic;
-				SPIOUT : in  std_logic;
-				SPICS :  in std_logic;
--- signals unique to mojo fpga --
-				SPICH : out std_logic_vector(3 downto 0); -- adc channel selector
-				AVR_TX : in  std_logic;                   -- avr uart -> fpga
-				AVR_RX : out std_logic;                   -- avr uart <- fpga
-				AVR_BUSY : in std_logic;                  -- avr uart full busy / avoid using avr_rx
-				RST_N : in  std_logic;                    -- reset button on board (inverted)
-				CCLK : in  std_logic                      -- configuration clock (?) from AVR (to detect when AVR ready)
+-- signals unique to alchitry au fpga --
+				RST_N : in  std_logic                    -- reset button on board (inverted)
 		 );
 end tophm2;
 
@@ -212,58 +203,10 @@ signal clk0_1: std_logic;
 signal RST  : std_logic;    -- reset signal
 signal R_LEDS : std_logic_vector(LEDCount -1 downto 0);
 
--- signals for avr_interface
-signal channel        : std_logic_vector(3 downto 0);
-signal sample         : std_logic_vector(9 downto 0);
-signal sample_channel : std_logic_vector(3 downto 0);
-signal new_sample     : std_logic;
-signal tx_data        : std_logic_vector(7 downto 0);
-signal rx_data        : std_logic_vector(7 downto 0);
-signal new_tx_data    : std_logic;
-signal new_rx_data    : std_logic;
-signal tx_busy        : std_logic;
-
--- signals for UART echo test
-signal uart_data    : std_logic_vector(7 downto 0); -- data buffer for UART (holds last recieved/sent byte)
-signal data_to_send   : std_logic;          -- indicates data to send in uart_data
-
--- signals for storing most recent sample from each adc
-signal AdcSamples      : varray10bit(7 downto 0);
-
 begin
 
 RST <= NOT RST_N;
 LEDS <= NOT R_LEDS;
-
-avr_interface : entity work.avr_interface
-	port map (
-		clk     => CLK,       -- 50Mhz clock
-		rst     => RST,       -- reset signal
-		-- AVR MCU pin connections (that will be managed)
-		cclk    => CCLK,
-		spi_miso  => SPIIN,
-		spi_mosi  => SPIOUT,
-		spi_sck   => SPICLK,
-		spi_ss    => SPICS,
-		spi_channel => SPICH,
-		tx      => AVR_RX,
-		tx_block  => AVR_BUSY,
-		rx      => AVR_TX,
-
-		-- analog sample interface
-		channel   => channel,             -- set this to channel to sample (0, 1, 4, 5, 6, 7, 8, or 9)
-		new_sample  => new_sample,        -- indicates when new sample available
-		sample_channel => sample_channel, -- channel number of sample (only when new_sample = '1')
-		sample    => sample,              -- 10 bit sample value (only when new_sample = '1')
-		-- USB UART tx interface
-		new_tx_data => new_tx_data,       -- set to set data in tx_data (only when tx_busy = '0')
-		tx_data   => tx_data,             -- data to send
-		tx_busy   => tx_busy,             -- indicates AVR is not ready to send data
-		-- USB UART rx interface
-		new_rx_data => new_rx_data,       -- set when new data is received
-		rx_data   => rx_data              -- received data (only when new_tx_data = '1')
-	);
-
 
 ahostmot2: entity work.HostMot2
 	generic map (
@@ -306,7 +249,6 @@ ahostmot2: entity work.HostMot2
 		clkhigh =>  fclk,					-- PWM clock
 --		int => INT, 
 		iobits => IOBITS,			
-		adcdata => AdcSamples,
 		leds => R_LEDS	
 		);
 
@@ -594,39 +536,5 @@ ahostmot2: entity work.HostMot2
 		end if;	
 	end process ICapSupport;	
 
-	doADCtask : process(CLK, RST)
-	begin
-		if rising_edge(clk) then
-			if new_sample = '1' then            -- if there is a new sample available 
-				case sample_channel is
-					when "0000" => 
-						channel <= "0001";
-						adcsamples(0) <= sample;
-					when "0001" =>
-						channel <= "0100";
-						adcsamples(1) <= sample;
-					when "0100" =>
-						channel <= "0101";
-						adcsamples(2) <= sample;
-					when "0101" =>
-						channel <= "0110";
-						adcsamples(3) <= sample;
-					when "0110" =>
-						channel <= "0111";
-						adcsamples(4) <= sample;
-					when "0111" =>
-						channel <= "1000";
-						adcsamples(5) <= sample;
-					when "1000" =>
-						channel <= "1001";
-						adcsamples(6) <= sample;
-					when "1001" =>
-						channel <= "0000";
-						adcsamples(7) <= sample;
-					when others => null;
-				end case;
-			end if;
-		end if;
-	end process doADCtask;	
 end;
 

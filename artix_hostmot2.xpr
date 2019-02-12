@@ -80,22 +80,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/common/avr_interface.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/common/avr_interface.vhd"/>
-          <Attr Name="ImportTime" Val="1521185367"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/common/avrmod.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/common/avrmod.vhd"/>
-          <Attr Name="ImportTime" Val="1521185367"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/imports/src/common/atrans.vhd">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/common/atrans.vhd"/>
@@ -147,14 +131,6 @@
       <File Path="$PSRCDIR/sources_1/imports/src/common/bufferedspi.vhd">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/common/bufferedspi.vhd"/>
-          <Attr Name="ImportTime" Val="1521185367"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/common/cclk_detector.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/common/cclk_detector.vhd"/>
           <Attr Name="ImportTime" Val="1521185367"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -633,22 +609,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/common/serial_rx.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/common/serial_rx.vhd"/>
-          <Attr Name="ImportTime" Val="1521185367"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/common/serial_tx.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/common/serial_tx.vhd"/>
-          <Attr Name="ImportTime" Val="1521185367"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/imports/src/common/simplespi8x.vhd">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/common/simplespi8x.vhd"/>
@@ -668,14 +628,6 @@
       <File Path="$PSRCDIR/sources_1/imports/src/common/sine16.vhd">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/common/sine16.vhd"/>
-          <Attr Name="ImportTime" Val="1521185367"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/src/common/spi_slave.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/common/spi_slave.vhd"/>
           <Attr Name="ImportTime" Val="1521185367"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>

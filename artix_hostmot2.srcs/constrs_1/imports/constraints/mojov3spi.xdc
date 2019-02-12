@@ -29,42 +29,6 @@ set_property IOSTANDARD LVTTL [get_ports COM_SPIOUT]
 set_property DRIVE 4 [get_ports COM_SPIOUT]
 set_property SLEW FAST [get_ports COM_SPIOUT]
 
-set_property PACKAGE_PIN F15 [get_ports SPICS]
-set_property IOSTANDARD LVTTL [get_ports SPICS]
-
-set_property PACKAGE_PIN E16 [get_ports SPIIN]
-set_property IOSTANDARD LVTTL [get_ports SPIIN]
-
-set_property PACKAGE_PIN D16 [get_ports SPIOUT]
-set_property IOSTANDARD LVTTL [get_ports SPIOUT]
-
-set_property PACKAGE_PIN G12 [get_ports SPICLK]
-set_property IOSTANDARD LVTTL [get_ports SPICLK]
-
-set_property PACKAGE_PIN G16 [get_ports {SPICH[0]}]
-set_property IOSTANDARD LVTTL [get_ports {SPICH[0]}]
-
-set_property PACKAGE_PIN H12 [get_ports {SPICH[1]}]
-set_property IOSTANDARD LVTTL [get_ports {SPICH[1]}]
-
-set_property PACKAGE_PIN H13 [get_ports {SPICH[2]}]
-set_property IOSTANDARD LVTTL [get_ports {SPICH[2]}]
-
-set_property PACKAGE_PIN H16 [get_ports {SPICH[3]}]
-set_property IOSTANDARD LVTTL [get_ports {SPICH[3]}]
-
-set_property PACKAGE_PIN J15 [get_ports AVR_TX]
-set_property IOSTANDARD LVTTL [get_ports AVR_TX]
-
-set_property PACKAGE_PIN J16 [get_ports AVR_RX]
-set_property IOSTANDARD LVTTL [get_ports AVR_RX]
-
-set_property PACKAGE_PIN H14 [get_ports AVR_BUSY]
-set_property IOSTANDARD LVTTL [get_ports AVR_BUSY]
-
-set_property PACKAGE_PIN T15 [get_ports CCLK]
-set_property IOSTANDARD LVTTL [get_ports CCLK]
-
 set_property PACKAGE_PIN P6 [get_ports RST_N]
 set_property IOSTANDARD LVTTL [get_ports RST_N]
 
