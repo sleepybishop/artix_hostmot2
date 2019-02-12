@@ -79,21 +79,16 @@ use work.FixICap.all;
 
 
 -------------------- select one card type------------------------------
-use work.mojov3_x9card.all;
-
---use work.mojov3_x9card.all;   	-- needs mojov3spi.ucf and SP6 x9 144 pin
+use work.alchitry_au_card.all;
 -----------------------------------------------------------------------
-use work.PIN_MOJO_ULTIMAKER_72.all;
---72 pin pinouts for mojo v3
---use work.PIN_MOJO_IO_72.all;
---use work.PIN_MOJO_ULTIMAKER_72.all;
-
+use work.PIN_ULTIMAKER_72.all;
+--use work.PIN_IO_72.all;
 ----------------------------------------------------------------------
 	
 	
 -- dont change anything below unless you know what you are doing -----
 	
-entity tophm2 is -- for mojo v3 spi
+entity tophm2 is -- for alchitry au spi
 	 generic 
 	 (
 		ThePinDesc: PinDescType := PinDesc;

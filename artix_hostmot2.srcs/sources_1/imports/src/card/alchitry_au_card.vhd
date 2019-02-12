@@ -68,7 +68,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 -- 
 
 use work.IDROMConst.all;
-package mojov3_x9card is
+package alchitry_au_card is
 		constant ClockHigh: integer := ClockHigh90;
 		constant ClockMed: integer := ClockMed90;
 		constant ClockLow: integer := ClockLow90;
@@ -83,4 +83,4 @@ package mojov3_x9card is
 		constant LEDCount: integer := 8;
 		constant	SepClocks: boolean := true;
 		constant OneWS: boolean := false;
-end package mojov3_x9card;
+end package alchitry_au_card;
