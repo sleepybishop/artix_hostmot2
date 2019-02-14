@@ -183,7 +183,7 @@ signal NeedWrite : std_logic;
 
 signal LoadICap : std_logic;
 signal ReadICapCookie : std_logic;
-signal ICapI : std_logic_vector(15 downto 0);
+signal ICapI : std_logic_vector(31 downto 0);
 signal ICapClock : std_logic;
 signal ICapTimer : std_logic_vector(5 downto 0) := "000000";
 
@@ -340,22 +340,21 @@ mmcm_adv_inst: MMCME2_ADV
        O => comspiclk,    -- Clock buffer output
        I => clkfx2      -- Clock buffer input
    );
-
-  -- End of DCM_inst instantiation
-
-   ICAP_SPARTAN6_inst : ICAP_SPARTAN6
+   
+   ICAP_inst : ICAPE2
    generic map (
-      DEVICE_ID => X"2000093",     -- Specifies the pre-programmed Device ID value
+      DEVICE_ID => X"362D093",     -- Specifies the pre-programmed Device ID value
+      ICAP_WIDTH => "X32",
       SIM_CFG_FILE_NAME => "NONE"  -- Specifies the Raw Bitstream (RBT) file to be parsed by the simulation
                                    -- model
    )
    port map (
 --      BUSY => BUSY, 			-- 1-bit output: Busy/Ready output
---      O => ICapO,       		-- 16-bit output: Configuration data output bus
-      CE => '0',   				-- 1-bit input: Active-Low ICAP Enable input
+--      O => ICapO,       		-- 32-bit output: Configuration data output bus
+      CSIB => '0',   			-- 1-bit input: Active-Low ICAP Enable input
       CLK => ICapClock,   		-- 1-bit input: Clock input
-      I => ICapI,   				-- 16-bit input: Configuration data input bus
-      WRITE => '0'				-- 1-bit input: Read/Write control input
+      I => ICapI,   			-- 32-bit input: Configuration data input bus
+      RDWRB => '1'				-- 1-bit input: Read/Write control input
    );
 
 	gcspi: process(clklow,comspiclk)		-- SPI interface with separate GClk SPI clock CPOL 0 CPHA 0
@@ -538,7 +537,7 @@ mmcm_adv_inst: MMCME2_ADV
 	begin
 		if rising_edge(clklow) then
 			if LoadICap = '1' then
-				ICapI <= FixICap(HM2DataInL(15 downto 0));
+				ICapI <= FixICap(HM2DataInL(31 downto 0));
 				ICapTimer <= "111111";
 			end if;		
 			if ICapTimer /= "000000" then

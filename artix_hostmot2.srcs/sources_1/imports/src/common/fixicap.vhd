@@ -67,21 +67,27 @@ use IEEE.std_logic_ARITH.ALL;
 --     POSSIBILITY OF SUCH DAMAGE.
 -- 
 
-package FixICap is		-- Return data 16 bit icap data with both bytes bit reversed
-	function FixICap(input : in std_logic_vector) return std_logic_vector;
+package FixICap is		-- Return data 32 bit icap data with both bytes bit reversed
+  function FixICap(input : in std_logic_vector) return std_logic_vector;
 end FixICap;
 
 package body fixicap is
-	function FixICap(input : in std_logic_vector) return std_logic_vector is
-	variable result   : std_logic_vector(15 downto 0);
-	begin
-		for i in 0 to 7 loop
-			result(i) := input(7-i);
-		end loop;	
-		for i in 8 to 15 loop
-			result(i) := input(23-i);
-		end loop;		
-		return result;
-	end FixICap;		
+  function FixICap(input : in std_logic_vector) return std_logic_vector is
+    variable result   : std_logic_vector(31 downto 0);
+  begin
+    for i in 0 to 7 loop
+      result(i) := input(7-i);
+    end loop;
+    for i in 8 to 15 loop
+      result(i) := input(23-i);
+    end loop;
+    for i in 16 to 23 loop
+      result(i) := input(39-i);
+    end loop;
+    for i in 24 to 31 loop
+      result(i) := input(55-i);
+    end loop;
+    return result;
+  end FixICap;		
 end fixicap;
 
