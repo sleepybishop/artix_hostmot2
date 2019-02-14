@@ -112,7 +112,7 @@ entity tophm2 is -- for alchitry au spi
 	Port (	CLK : in std_logic;
 				LEDS : out std_logic_vector(LEDCount -1 downto 0);
 				IOBITS : inout std_logic_vector(IOWidth -1 downto 0);
-				COM_SPICLK : in std_logic;			-- host interface SPI ( FPGA is slave)
+				COM_SPICLK : out std_logic;			-- host interface SPI ( FPGA is slave)
 				COM_SPIIN : in std_logic;
 				COM_SPIOUT : out std_logic;
 				COM_SPICS : in std_logic;
@@ -187,13 +187,16 @@ signal ICapI : std_logic_vector(15 downto 0);
 signal ICapClock : std_logic;
 signal ICapTimer : std_logic_vector(5 downto 0) := "000000";
 
+signal clkfb : std_logic;
+
 signal fclk : std_logic;
 signal clkfx0: std_logic;
-signal clk0_0: std_logic;
 
 signal clklow : std_logic;
 signal clkfx1: std_logic;
-signal clk0_1: std_logic;
+
+signal comspiclk : std_logic;
+signal clkfx2: std_logic;
 
 signal RST  : std_logic;    -- reset signal
 signal R_LEDS : std_logic_vector(LEDCount -1 downto 0);
@@ -202,6 +205,7 @@ begin
 
 RST <= NOT RST_N;
 LEDS <= NOT R_LEDS;
+COM_SPICLK <= comspiclk;
 
 ahostmot2: entity work.HostMot2
 	generic map (
@@ -246,78 +250,95 @@ ahostmot2: entity work.HostMot2
 		iobits => IOBITS,			
 		leds => R_LEDS	
 		);
+		       
+mmcm_adv_inst: MMCME2_ADV
+    generic map(
+      BANDWIDTH => "OPTIMIZED",
+      CLKFBOUT_MULT_F => 10.000000,
+      CLKFBOUT_PHASE => 0.000000,
+      CLKFBOUT_USE_FINE_PS => false,
+      CLKIN1_PERIOD => 10.000000,
+      CLKIN2_PERIOD => 0.000000,
+      CLKOUT0_DIVIDE_F => 5.000000,
+      CLKOUT0_DUTY_CYCLE => 0.500000,
+      CLKOUT0_PHASE => 0.000000,
+      CLKOUT0_USE_FINE_PS => false,
+      CLKOUT1_DIVIDE => 10,
+      CLKOUT1_DUTY_CYCLE => 0.500000,
+      CLKOUT1_PHASE => 0.000000,
+      CLKOUT1_USE_FINE_PS => false,
+      CLKOUT2_DIVIDE => 100,
+      CLKOUT2_DUTY_CYCLE => 0.500000,
+      CLKOUT2_PHASE => 0.000000,
+      CLKOUT2_USE_FINE_PS => false,
+      CLKOUT3_DIVIDE => 1,
+      CLKOUT3_DUTY_CYCLE => 0.500000,
+      CLKOUT3_PHASE => 0.000000,
+      CLKOUT3_USE_FINE_PS => false,
+      CLKOUT4_CASCADE => false,
+      CLKOUT4_DIVIDE => 1,
+      CLKOUT4_DUTY_CYCLE => 0.500000,
+      CLKOUT4_PHASE => 0.000000,
+      CLKOUT4_USE_FINE_PS => false,
+      CLKOUT5_DIVIDE => 1,
+      CLKOUT5_DUTY_CYCLE => 0.500000,
+      CLKOUT5_PHASE => 0.000000,
+      CLKOUT5_USE_FINE_PS => false,
+      CLKOUT6_DIVIDE => 1,
+      CLKOUT6_DUTY_CYCLE => 0.500000,
+      CLKOUT6_PHASE => 0.000000,
+      CLKOUT6_USE_FINE_PS => false,
+      COMPENSATION => "INTERNAL",
+      DIVCLK_DIVIDE => 1,
+      IS_CLKINSEL_INVERTED => '0',
+      IS_PSEN_INVERTED => '0',
+      IS_PSINCDEC_INVERTED => '0',
+      IS_PWRDWN_INVERTED => '0',
+      IS_RST_INVERTED => '0',
+      REF_JITTER1 => 0.010000,
+      REF_JITTER2 => 0.010000,
+      SS_EN => "FALSE",
+      SS_MODE => "CENTER_HIGH",
+      SS_MOD_PERIOD => 10000,
+      STARTUP_WAIT => false
+    )
+        port map (
+      CLKFBIN => clkfb,
+      CLKFBOUT => clkfb,
+      CLKIN1 => CLK,
+      CLKIN2 => '0',
+      CLKINSEL => '1',
+      CLKOUT0 => clkfx0,
+      CLKOUT1 => clkfx1,
+      CLKOUT2 => clkfx2,
+      DADDR(6 downto 0) => B"0000000",
+      DCLK => '0',
+      DEN => '0',
+      DI(15 downto 0) => B"0000000000000000",
+      DWE => '0',
+      PSCLK => '0',
+      PSEN => '0',
+      PSINCDEC => '0',
+      PWRDWN => '0',
+      RST => '0'
+    );
 
-
-
-		
-   ClockMultH : DCM
-   generic map (
-      CLKDV_DIVIDE => 2.0,
-      CLKFX_DIVIDE => 2, 
-      CLKFX_MULTIPLY => 8,			-- 8 FOR 200 MHz
-      CLKIN_DIVIDE_BY_2 => FALSE, 
-      CLKIN_PERIOD => 20.0,          
-      CLKOUT_PHASE_SHIFT => "NONE", 
-      CLK_FEEDBACK => "1X",         
-      DESKEW_ADJUST => "SYSTEM_SYNCHRONOUS", 
-                                            
-      DFS_FREQUENCY_MODE => "LOW",
-      DLL_FREQUENCY_MODE => "LOW",
-      DUTY_CYCLE_CORRECTION => TRUE,
-      FACTORY_JF => X"C080",
-      PHASE_SHIFT => 0, 
-      STARTUP_WAIT => FALSE)
-   port map (
- 
-      CLK0 => clk0_0,   	-- 
-      CLKFB => clk0_0,  	-- DCM clock feedback
-		CLKFX => clkfx0,
-      CLKIN => CLK,    -- Clock input (from IBUFG, BUFG or DCM)
-      PSCLK => '0',   	-- Dynamic phase adjust clock input
-      PSEN => '0',     	-- Dynamic phase adjust enable input
-      PSINCDEC => '0', 	-- Dynamic phase adjust increment/decrement
-      RST => '0'        -- DCM asynchronous reset input
-   );
-  
   BUFG_inst0 : BUFG
-   port map (
+  port map (
       O => fclk,    -- Clock buffer output
       I => clkfx0      -- Clock buffer input
    );
-	
-   ClockMultM : DCM
-   generic map (
-      CLKDV_DIVIDE => 2.0,
-      CLKFX_DIVIDE => 2, 
-      CLKFX_MULTIPLY => 4,			-- 4 FOR 100 MHz
-      CLKIN_DIVIDE_BY_2 => FALSE, 
-      CLKIN_PERIOD => 20.0,          
-      CLKOUT_PHASE_SHIFT => "NONE", 
-      CLK_FEEDBACK => "1X",         
-      DESKEW_ADJUST => "SYSTEM_SYNCHRONOUS", 
-                                            
-      DFS_FREQUENCY_MODE => "LOW",
-      DLL_FREQUENCY_MODE => "LOW",
-      DUTY_CYCLE_CORRECTION => TRUE,
-      FACTORY_JF => X"C080",
-      PHASE_SHIFT => 0, 
-      STARTUP_WAIT => FALSE)
+   
+   BUFG_inst1 : BUFG
    port map (
- 
-      CLK0 => clk0_1,   	-- 
-      CLKFB => clk0_1,  	-- DCM clock feedback
-		CLKFX => clkfx1,
-      CLKIN => CLK,    -- Clock input (from IBUFG, BUFG or DCM)
-      PSCLK => '0',   	-- Dynamic phase adjust clock input
-      PSEN => '0',     	-- Dynamic phase adjust enable input
-      PSINCDEC => '0', 	-- Dynamic phase adjust increment/decrement
-      RST => '0'        -- DCM asynchronous reset input
+       O => clklow,    -- Clock buffer output
+       I => clkfx1      -- Clock buffer input
    );
-  
-  BUFG_inst1 : BUFG
+
+   BUFG_inst2 : BUFG
    port map (
-      O => clklow,    -- Clock buffer output
-      I => clkfx1      -- Clock buffer input
+       O => comspiclk,    -- Clock buffer output
+       I => clkfx2      -- Clock buffer input
    );
 
   -- End of DCM_inst instantiation
@@ -337,9 +358,9 @@ ahostmot2: entity work.HostMot2
       WRITE => '0'				-- 1-bit input: Read/Write control input
    );
 
-	gcspi: process(clklow,COM_SPICLK)		-- SPI interface with separate GClk SPI clock CPOL 0 CPHA 0
+	gcspi: process(clklow,comspiclk)		-- SPI interface with separate GClk SPI clock CPOL 0 CPHA 0
 	begin
-		if Rising_edge(COM_SPICLK) then		-- sample the SPI data in on rising edge
+		if Rising_edge(comspiclk) then		-- sample the SPI data in on rising edge
 			if UpdateSPIReg = '1' then
 				UpdateSPIReg <= '0';
 			end if;	
@@ -398,7 +419,7 @@ ahostmot2: entity work.HostMot2
 			end if;	-- CS = 0
 		end if;	-- clk falling edge
 		
-		if Falling_edge(COM_SPICLK) then									-- shift data out on falling edge						
+		if Falling_edge(comspiclk) then									-- shift data out on falling edge						
 			if COM_SPICS = '0' then
 				if UpDateSPIReg = '1' then
 					UpDateSPIRegD <= '1';

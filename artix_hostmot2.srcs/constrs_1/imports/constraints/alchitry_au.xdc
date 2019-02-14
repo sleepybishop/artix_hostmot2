@@ -2,15 +2,10 @@ set_property CFGBVS VCCO [current_design]
 set_property CONFIG_VOLTAGE 3.3 [current_design]
 
 create_clock -period 10.000 -name CLK -waveform {0.000 5.000} [get_ports CLK]
-create_clock -name COM_SPICLK -period 10.000 [get_ports COM_SPICLK]
+create_clock -name COM_SPICLK -period 100.000 [get_ports COM_SPICLK]
 
-set_false_path -from [get_clocks CLK] -to [get_clocks COM_SPICLK]
-set_false_path -from [get_clocks COM_SPICLK] -to [get_clocks CLK]
-
-
-set_output_delay -clock [get_clocks COM_SPICLK] -add_delay -3.000 [all_outputs]
-set_input_delay -clock [get_clocks COM_SPICLK] -max 1.000 -add_delay [all_inputs]
-set_input_delay -clock [get_clocks COM_SPICLK] -min 0.000 -add_delay [all_inputs]
+#set_false_path -from [get_clocks CLK] -to [get_clocks COM_SPICLK]
+#set_false_path -from [get_clocks COM_SPICLK] -to [get_clocks CLK]
 
 set_property PACKAGE_PIN N14 [get_ports CLK]
 set_property IOSTANDARD LVTTL [get_ports CLK]
