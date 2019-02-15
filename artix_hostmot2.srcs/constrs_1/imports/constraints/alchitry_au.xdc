@@ -16,16 +16,17 @@ create_clock -name COM_SPICLK -period 100.000 [get_ports COM_SPICLK]
 set_property PACKAGE_PIN N14 [get_ports CLK]
 set_property IOSTANDARD LVTTL [get_ports CLK]
 
-set_property PACKAGE_PIN R16 [get_ports COM_SPICLK]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets COM_SPICLK_IBUF]
+set_property PACKAGE_PIN R15 [get_ports COM_SPICLK]
 set_property IOSTANDARD LVTTL [get_ports COM_SPICLK]
 
-set_property PACKAGE_PIN T15 [get_ports COM_SPICS]
+set_property PACKAGE_PIN R16 [get_ports COM_SPICS]
 set_property IOSTANDARD LVTTL [get_ports COM_SPICS]
 
-set_property PACKAGE_PIN R15 [get_ports COM_SPIIN]
+set_property PACKAGE_PIN T14 [get_ports COM_SPIIN]
 set_property IOSTANDARD LVTTL [get_ports COM_SPIIN]
 
-set_property PACKAGE_PIN T14 [get_ports COM_SPIOUT]
+set_property PACKAGE_PIN T15 [get_ports COM_SPIOUT]
 set_property IOSTANDARD LVTTL [get_ports COM_SPIOUT]
 set_property DRIVE 4 [get_ports COM_SPIOUT]
 set_property SLEW FAST [get_ports COM_SPIOUT]

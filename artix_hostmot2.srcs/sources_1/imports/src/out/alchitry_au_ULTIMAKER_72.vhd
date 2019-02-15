@@ -112,7 +112,7 @@ entity tophm2 is -- for alchitry au spi
 	Port (	CLK : in std_logic;
 				LEDS : out std_logic_vector(LEDCount -1 downto 0);
 				IOBITS : inout std_logic_vector(IOWidth -1 downto 0);
-				COM_SPICLK : out std_logic;			-- host interface SPI ( FPGA is slave)
+				COM_SPICLK : in std_logic;			-- host interface SPI ( FPGA is slave)
 				COM_SPIIN : in std_logic;
 				COM_SPIOUT : out std_logic;
 				COM_SPICS : in std_logic;
@@ -193,13 +193,12 @@ signal ICapTimer : std_logic_vector(5 downto 0) := "000000";
 signal clkfb : std_logic;
 
 signal fclk : std_logic;
-signal clkfx0: std_logic;
-
 signal clklow : std_logic;
-signal clkfx1: std_logic;
 
-signal comspiclk : std_logic;
+signal clkfx0: std_logic;
+signal clkfx1: std_logic;
 signal clkfx2: std_logic;
+
 
 signal RST  : std_logic;    -- reset signal
 signal R_LEDS : std_logic_vector(LEDCount -1 downto 0);
@@ -208,7 +207,6 @@ begin
 
 RST <= NOT RST_N;
 LEDS <= NOT R_LEDS;
-COM_SPICLK <= comspiclk;
 
 ahostmot2: entity work.HostMot2
 	generic map (
@@ -337,12 +335,6 @@ mmcm_adv_inst: MMCME2_ADV
        O => clklow,    -- Clock buffer output
        I => clkfx1      -- Clock buffer input
    );
-
-   BUFG_inst2 : BUFG
-   port map (
-       O => comspiclk,    -- Clock buffer output
-       I => clkfx2      -- Clock buffer input
-   );
    
    ICAP_inst : ICAPE2
    generic map (
@@ -360,9 +352,9 @@ mmcm_adv_inst: MMCME2_ADV
       RDWRB => '1'				-- 1-bit input: Read/Write control input
    );
 
-	gcspi: process(clklow,comspiclk)		-- SPI interface with separate GClk SPI clock CPOL 0 CPHA 0
+	gcspi: process(clklow,COM_SPICLK)		-- SPI interface with separate GClk SPI clock CPOL 0 CPHA 0
 	begin
-		if Rising_edge(comspiclk) then		-- sample the SPI data in on rising edge
+		if Rising_edge(COM_SPICLK) then		-- sample the SPI data in on rising edge
 			if UpdateSPIReg = '1' then
 				UpdateSPIReg <= '0';
 			end if;	
@@ -421,7 +413,7 @@ mmcm_adv_inst: MMCME2_ADV
 			end if;	-- CS = 0
 		end if;	-- clk falling edge
 		
-		if Falling_edge(comspiclk) then									-- shift data out on falling edge						
+		if Falling_edge(COM_SPICLK) then									-- shift data out on falling edge						
 			if COM_SPICS = '0' then
 				if UpDateSPIReg = '1' then
 					UpDateSPIRegD <= '1';
