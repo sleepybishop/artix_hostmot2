@@ -117,7 +117,10 @@ entity tophm2 is -- for alchitry au spi
 				COM_SPIOUT : out std_logic;
 				COM_SPICS : in std_logic;
 -- signals unique to alchitry au fpga --
+				USB_RX: in std_logic;
+				USB_TX: out std_logic;
 				RST_N : in  std_logic                    -- reset button on board (inverted)
+
 		 );
 end tophm2;
 

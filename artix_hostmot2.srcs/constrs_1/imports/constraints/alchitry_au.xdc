@@ -1,3 +1,9 @@
+set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
+set_property BITSTREAM.CONFIG.CONFIGRATE 33 [current_design]
+set_property BITSTREAM.CONFIG.SPI_32BIT_ADDR NO [current_design]
+set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 1 [current_design]
+set_property BITSTREAM.CONFIG.SPI_FALL_EDGE YES [current_design]
+
 set_property CFGBVS VCCO [current_design]
 set_property CONFIG_VOLTAGE 3.3 [current_design]
 
@@ -10,16 +16,16 @@ create_clock -name COM_SPICLK -period 100.000 [get_ports COM_SPICLK]
 set_property PACKAGE_PIN N14 [get_ports CLK]
 set_property IOSTANDARD LVTTL [get_ports CLK]
 
-set_property PACKAGE_PIN C11 [get_ports COM_SPICLK]
+set_property PACKAGE_PIN R16 [get_ports COM_SPICLK]
 set_property IOSTANDARD LVTTL [get_ports COM_SPICLK]
 
-set_property PACKAGE_PIN D13 [get_ports COM_SPICS]
+set_property PACKAGE_PIN T15 [get_ports COM_SPICS]
 set_property IOSTANDARD LVTTL [get_ports COM_SPICS]
 
-set_property PACKAGE_PIN C13 [get_ports COM_SPIIN]
+set_property PACKAGE_PIN R15 [get_ports COM_SPIIN]
 set_property IOSTANDARD LVTTL [get_ports COM_SPIIN]
 
-set_property PACKAGE_PIN C12 [get_ports COM_SPIOUT]
+set_property PACKAGE_PIN T14 [get_ports COM_SPIOUT]
 set_property IOSTANDARD LVTTL [get_ports COM_SPIOUT]
 set_property DRIVE 4 [get_ports COM_SPIOUT]
 set_property SLEW FAST [get_ports COM_SPIOUT]
@@ -66,6 +72,12 @@ set_property PACKAGE_PIN N16 [get_ports {LEDS[7]}]
 set_property IOSTANDARD LVTTL [get_ports {LEDS[7]}]
 set_property DRIVE 8 [get_ports {LEDS[7]}]
 set_property SLEW SLOW [get_ports {LEDS[7]}]
+
+set_property PACKAGE_PIN P16 [get_ports {USB_TX}]
+set_property IOSTANDARD LVCMOS33 [get_ports {USB_TX}]
+
+set_property PACKAGE_PIN P15 [get_ports {USB_RX}]
+set_property IOSTANDARD LVCMOS33 [get_ports {USB_RX}]
 
 set_property PACKAGE_PIN G1 [get_ports {IOBITS[0]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[0]}]
