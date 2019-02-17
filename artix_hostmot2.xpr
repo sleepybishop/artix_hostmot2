@@ -60,9 +60,9 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/imports/src/out/alchitry_au_ULTIMAKER_72.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/src/out/alchitry_au.vhd">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/out/alchitry_au_ULTIMAKER_72.vhd"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../Downloads/sleepybishop/artix_hostmot2/src/out/alchitry_au.vhd"/>
           <Attr Name="ImportTime" Val="1521312008"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
