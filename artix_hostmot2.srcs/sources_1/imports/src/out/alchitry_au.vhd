@@ -120,7 +120,7 @@ entity tophm2 is -- for alchitry au spi
 				USB_RX: in std_logic;
 				USB_TX: out std_logic;
 				RST_N : in  std_logic                    -- reset button on board (inverted)
-
+-- signals for adc
 		 );
 end tophm2;
 
@@ -202,11 +202,39 @@ signal clkfx2: std_logic;
 
 signal RST  : std_logic;    -- reset signal
 signal R_LEDS : std_logic_vector(LEDCount -1 downto 0);
+-- signals for storing most recent sample from each adc	
+signal adc_channel : std_logic_vector( 4 downto 0) := (others => '0');
+signal adc_enable  : std_logic := '1';
+signal adc_ready   : std_logic;
+signal adc_data    : std_logic_vector( 15 downto 0) := (others => '0');
+signal adc_datain  : std_logic_vector(15 downto 0) := (others => '0');
+signal adc_addr    : std_logic_vector(6 downto 0) := (others => '0');
+signal adc_samples : varray12bit(7 downto 0);
 
 begin
 
 RST <= NOT RST_N;
 LEDS <= NOT R_LEDS;
+
+--adc_interface : entity work.adc_interface
+--	port map (
+--	   dclk_in      =>  CLK,
+--       reset_in     =>  RST_N,
+--       daddr_in     => (others => '0'),
+--       den_in       => adc_enable,
+--       di_in        => (others => '0'),
+--       dwe_in       => '0',
+--       do_out       => adc_data,
+--       drdy_out     => adc_ready,
+        --busy_out    =>  ,
+--        channel_out =>  adc_channel,
+        --eoc_out     =>  adc_enable,
+        --eos_out     =>  ,
+        --alarm_out   =>  ,
+--       muxaddr_out  =>  ADCMUX,
+--       vp_in        => AVP,
+--       vn_in        => AVN
+--	);	
 
 ahostmot2: entity work.HostMot2
 	generic map (
@@ -248,7 +276,8 @@ ahostmot2: entity work.HostMot2
 		clkmed  => clklow,				-- Processor clock
 		clkhigh =>  fclk,					-- PWM clock
 --		int => INT, 
-		iobits => IOBITS,			
+		iobits => IOBITS,
+		adcdata => adc_samples,
 		leds => R_LEDS	
 		);
 		       
@@ -546,5 +575,11 @@ mmcm_adv_inst: MMCME2_ADV
 		end if;	
 	end process ICapSupport;	
 
+doADCtask : process(CLK)	
+	begin	
+		if rising_edge(clk) then	
+	
+		end if;	
+	end process doADCtask;	
 end;
 
