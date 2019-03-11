@@ -81,8 +81,9 @@ use work.FixICap.all;
 -------------------- select one card type------------------------------
 use work.alchitry_au_card.all;
 -----------------------------------------------------------------------
-use work.PIN_ULTIMAKER_72.all;
---use work.PIN_IO_72.all;
+use work.PIN_DUEX5_96.all;
+--use work.PIN_ULTIMAKER_96.all;
+--use work.PIN_IO_96.all;
 ----------------------------------------------------------------------
 	
 	

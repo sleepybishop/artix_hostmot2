@@ -69,13 +69,13 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 use work.IDROMConst.all;
 
-package PIN_ULTIMAKER_72 is
+package PIN_IO_96 is
 	constant ModuleID : ModuleIDType :=( 
 		(WatchDogTag,			x"00",	ClockLowTag,	x"01",	WatchDogTimeAddr&PadT,		WatchDogNumRegs,		x"00",	WatchDogMPBitMask),
 		(IOPortTag,				x"00",	ClockLowTag,	x"03",	PortAddr&PadT,					IOPortNumRegs,			x"00",	IOPortMPBitMask),
-		(LEDTag,					x"00",	ClockLowTag,	x"01",	LEDAddr&PadT,					LEDNumRegs,				x"00",	LEDMPBitMask),
-		(StepGenTag,	x"02",	ClockLowTag,	x"05",	StepGenRateAddr&PadT,		StepGenNumRegs,		x"00",	StepGenMPBitMask),
-		(PWMTag,			x"00",	ClockHighTag,	x"03",	PWMValAddr&PadT,				PWMNumRegs,				x"00",	PWMMPBitMask),
+		(LEDTag,					x"00",	ClockLowTag,	x"08",	LEDAddr&PadT,					LEDNumRegs,				x"00",	LEDMPBitMask),
+		(NullTag,				x"00",	NullTag,			x"00",	NullAddr&PadT,					x"00",					x"00",	x"00000000"),
+		(NullTag,				x"00",	NullTag,			x"00",	NullAddr&PadT,					x"00",					x"00",	x"00000000"),
 		(NullTag,				x"00",	NullTag,			x"00",	NullAddr&PadT,					x"00",					x"00",	x"00000000"),
 		(NullTag,				x"00",	NullTag,			x"00",	NullAddr&PadT,					x"00",					x"00",	x"00000000"),
 		(NullTag,				x"00",	NullTag,			x"00",	NullAddr&PadT,					x"00",					x"00",	x"00000000"),
@@ -107,21 +107,21 @@ package PIN_ULTIMAKER_72 is
 			
 	constant PinDesc : PinDescType :=(
 -- 	Base func  sec unit sec func 	 		 sec pin		
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 00
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 01
-		IOPortTag & x"01" & NullTag & x"00",                  -- I/O 02	
-		IOPortTag & x"01" & NullTag & x"00",                  -- I/O 03	
-		IOPortTag & x"02" & NullTag & x"00",                  -- I/O 04	
-		IOPortTag & x"02" & NullTag & x"00",                  -- I/O 05	
-		IOPortTag & x"03" & NullTag & x"00",      	          -- I/O 06	
-		IOPortTag & x"03" & NullTag & x"00",                  -- I/O 07	
-		IOPortTag & x"04" & NullTag & x"00",      	          -- I/O 08	
-		IOPortTag & x"04" & NullTag & x"00",                  -- I/O 09	
-		IOPortTag & x"00" & NullTag & x"00",       			    	-- I/O 10
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 00
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 01
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 02	
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 03		
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 04		
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 05		
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 06		
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 07			
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 08		
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 09		
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 10
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 11
-		IOPortTag & x"01" & NullTag & x"00",       	    			-- I/O 12
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 12
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 13
-		IOPortTag & x"02" & NullTag & x"00",          				-- I/O 14
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 14
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 15
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 16
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 17
@@ -136,16 +136,16 @@ package PIN_ULTIMAKER_72 is
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 25	
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 26
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 27	
-		IOPortTag & x"00" & StepGenTag & StepGenDirPin,    		-- I/O 28 
-		IOPortTag & x"00" & StepGenTag & StepGenStepPin,   		-- I/O 29 
-		IOPortTag & x"01" & StepGenTag & StepGenDirPin,    		-- I/O 30
-		IOPortTag & x"01" & StepGenTag & StepGenStepPin,   		-- I/O 31
-		IOPortTag & x"02" & StepGenTag & StepGenDirPin,     	-- I/O 32
-		IOPortTag & x"02" & StepGenTag & StepGenStepPin,    	-- I/O 33
-		IOPortTag & x"03" & StepGenTag & StepGenDirPin,     	-- I/O 34 
-		IOPortTag & x"03" & StepGenTag & StepGenStepPin,    	-- I/O 35
-		IOPortTag & x"04" & StepGenTag & StepGenDirPin,       -- I/O 36
-		IOPortTag & x"04" & StepGenTag & StepGenStepPin,      -- I/O 37	
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 28 
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 29 
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 30
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 31
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 32
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 33
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 34 
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 35
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 36
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 37	
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 38	
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 39	
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 40 
@@ -157,11 +157,11 @@ package PIN_ULTIMAKER_72 is
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 46
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 47	
 																					
-		IOPortTag & x"00" & PWMTag & PWMAOutPin,   						-- I/O 48   
-		IOPortTag & x"00" & NullTag & x"00",      						-- I/O 49
-		IOPortTag & x"01" & PWMTag & PWMAOutPin,   						-- I/O 50
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 48   
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 49
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 50
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 51
-		IOPortTag & x"02" & PWMTag & PWMAOutPin,  						-- I/O 52
+		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 52
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 53
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 54
 		IOPortTag & x"00" & NullTag & x"00",       						-- I/O 55
@@ -180,17 +180,41 @@ package PIN_ULTIMAKER_72 is
 		IOPortTag & x"00" & NullTag & x"00",  								-- I/O 68
 		IOPortTag & x"00" & NullTag & x"00",  								-- I/O 69
 		IOPortTag & x"00" & NullTag & x"00",  								-- I/O 70
-		IOPortTag & x"00" & NullTag & x"00",  								-- I/O 71
-
+    IOPortTag & x"00" & NullTag & x"00",                  -- I/O 71 
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 72
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 73
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 74
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 75
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 76
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 77
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 78
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 79
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 80
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 81
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 82
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 83
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 84
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 85
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 86
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 87
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 88
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 89
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 90
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 91
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 92
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 93
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 94
+    IOPortTag & x"00" & NullTag & x"00",  								-- I/O 95
+        
 		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin, -- added for IDROM v3
 		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,
 		
-		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,
-		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,
-		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,
+--		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,
+--		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,
+--		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,
 		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,
 		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,
 		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,
 		emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin,emptypin);
 
-end package PIN_ULTIMAKER_72;
+end package PIN_IO_96;
