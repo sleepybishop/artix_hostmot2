@@ -76,9 +76,9 @@ package alchitry_au_card is
 		constant BoardNameHigh : std_Logic_Vector(31 downto 0) := BoardNameXXAU;
 		constant FPGASize: integer := 35;
 		constant FPGAPins: integer := 256;
-		constant IOPorts: integer := 4;
+		constant IOPorts: integer := 3;
 		constant IOWidth: integer := 96;
-		constant PortWidth: integer := 24;
+		constant PortWidth: integer := 32;
 		constant LIOWidth: integer := 6;
 		constant LEDCount: integer := 8;
 		constant	SepClocks: boolean := true;
