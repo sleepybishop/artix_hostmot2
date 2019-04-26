@@ -66,33 +66,34 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
  use work.IDROMConst.all;	
 
- entity xadc is	
+ entity adc is	
 	generic (	
 		buswidth : integer	
 	);	
-	port ( 	
+	port (
+	    adcdata: varray12bit(7 downto 0); 	
 		readadc : in  std_logic;	
 		addr : in  std_logic_vector(3 downto 1);	
 		obus : out  std_logic_vector (buswidth-1 downto 0)	
 	);	
-end xadc;	
+end adc;	
 
- architecture Behavioral of xadc is	
+ architecture Behavioral of adc is	
 
  begin	
-	xadcproc: process (readadc,addr)	
+	adcproc: process (readadc,addr)	
 	begin	
 		obus <= ( others => 'Z');	
 		if readadc = '1' then	
 			case addr is	
-				when "000" => obus <= x"0000"&"000000";	
-				when "001" => obus <= x"0000"&"000000";	
-				when "010" => obus <= x"0000"&"000000";	
-				when "011" => obus <= x"0000"&"000000";	
-				when "100" => obus <= x"0000"&"000000";	
-				when "101" => obus <= x"0000"&"000000";	
-				when "110" => obus <= x"0000"&"000000";	
-				when "111" => obus <= x"0000"&"000000";	
+				when "000" => obus <= x"0000"&"0000000000000000";	
+				when "001" => obus <= x"0000"&"0000000000000000";	
+				when "010" => obus <= x"0000"&"0000000000000000";	
+				when "011" => obus <= x"0000"&"0000000000000000";	
+				when "100" => obus <= x"0000"&"0000000000000000";	
+				when "101" => obus <= x"0000"&"0000000000000000";	
+				when "110" => obus <= x"0000"&"0000000000000000";	
+				when "111" => obus <= x"0000"&"0000000000000000";	
 				when others => null;	
 			end case;	
 		end if;	
