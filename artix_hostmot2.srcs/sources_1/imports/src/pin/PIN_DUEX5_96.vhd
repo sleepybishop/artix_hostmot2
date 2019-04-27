@@ -76,9 +76,9 @@ package PIN_DUEX5_96 is
 	(LEDTag,                x"00",  ClockLowTag,        x"01",  LEDAddr&PadT,                   LEDNumRegs,             x"00",  LEDMPBitMask),
 	(StepGenTag,            x"02",  ClockLowTag,        x"05",  StepGenRateAddr&PadT,           StepGenNumRegs,         x"00",  StepGenMPBitMask),
 	(PWMTag,                x"00",  ClockHighTag,       x"05",  PWMValAddr&PadT,                PWMNumRegs,             x"00",  PWMMPBitMask),
-	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
 	(ADCTag,                x"00",  ClockLowTag,        x"01",  ADCAddr&PadT,                   ADCNumRegs,             x"00",  ADCMPBitMask),
 	(BSPITag,               x"00",  ClockLowTag,        x"02",  BSPIDataAddr&PadT,              BSPINumRegs,            x"11",  BSPIMPBitMask),
+	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
 	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
 	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
 	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
@@ -107,38 +107,38 @@ package PIN_DUEX5_96 is
 			
 	constant PinDesc : PinDescType :=(
 -- 	Base func  sec unit sec func 	 		 sec pin		
-		IOPortTag & x"00" & BSPITag & BSPICS3Pin,                  -- I/O 00
-		IOPortTag & x"03" & StepGenTag & StepGenStepPin,      -- I/O 01
-		IOPortTag & x"03" & StepGenTag & StepGenDirPin,       -- I/O 02	
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 03	
-		IOPortTag & x"03" & PWMTag & PWMAOutPin,              -- I/O 04	
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 05	
-		IOPortTag & x"04" & StepGenTag & StepGenStepPin,      -- I/O 06	
-		IOPortTag & x"04" & StepGenTag & StepGenDirPin,       -- I/O 07	
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 08	
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 09	
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 10
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 11
-		IOPortTag & x"04" & PWMTag & PWMAOutPin,              -- I/O 12
-		IOPortTag & x"01" & BSPITag & BSPIClkPin,             -- I/O 13
-		IOPortTag & x"01" & BSPITag & BSPIOutPin,             -- I/O 14
-		IOPortTag & x"01" & BSPITag & BSPIInPin,              -- I/O 15
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 16
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 17
-		IOPortTag & x"00" & StepGenTag & StepGenStepPin,      -- I/O 18
-		IOPortTag & x"00" & StepGenTag & StepGenDirPin,       -- I/O 19
+		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 00
+		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 01
+		IOPortTag & x"00" & StepGenTag & StepGenStepPin,      -- I/O 02	
+		IOPortTag & x"00" & StepGenTag & StepGenDirPin,       -- I/O 03	
+		IOPortTag & x"01" & BSPITag & BSPICS0Pin,             -- I/O 04	
+		IOPortTag & x"00" & PWMTag & PWMAOutPin,              -- I/O 05	
+		IOPortTag & x"00" & BSPITag & BSPICS1Pin,             -- I/O 06	
+		IOPortTag & x"01" & StepGenTag & StepGenStepPin,      -- I/O 07	
+		IOPortTag & x"01" & StepGenTag & StepGenDirPin,       -- I/O 08	
+		IOPortTag & x"01" & BSPITag & BSPICS1Pin,             -- I/O 09	
+		IOPortTag & x"01" & PWMTag & PWMAOutPin,              -- I/O 10
+		IOPortTag & x"00" & BSPITag & BSPICS2Pin,             -- I/O 11
+		IOPortTag & x"02" & StepGenTag & StepGenStepPin,      -- I/O 12
+		IOPortTag & x"02" & StepGenTag & StepGenDirPin,       -- I/O 13
+		IOPortTag & x"01" & BSPITag & BSPICS2Pin,             -- I/O 14
+		IOPortTag & x"02" & PWMTag & PWMAOutPin,              -- I/O 15
+		IOPortTag & x"01" & BSPITag & BSPIInPin,              -- I/O 16
+		IOPortTag & x"01" & BSPITag & BSPIOutPin,             -- I/O 17
+		IOPortTag & x"01" & BSPITag & BSPIClkPin,             -- I/O 18
+		IOPortTag & x"04" & PWMTag & PWMAOutPin,              -- I/O 19
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 20
-		IOPortTag & x"00" & PWMTag & PWMAOutPin,              -- I/O 21
-		IOPortTag & x"00" & BSPITag & BSPICS1Pin,             -- I/O 22
-		IOPortTag & x"01" & StepGenTag & StepGenStepPin,      -- I/O 23           
-		IOPortTag & x"01" & StepGenTag & StepGenDirPin,       -- I/O 24
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 25	
-		IOPortTag & x"01" & PWMTag & PWMAOutPin,              -- I/O 26
-		IOPortTag & x"00" & BSPITag & BSPICS2Pin,             -- I/O 27	
-		IOPortTag & x"02" & StepGenTag & StepGenStepPin,      -- I/O 28 
-		IOPortTag & x"02" & StepGenTag & StepGenDirPin,       -- I/O 29 
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 30
-		IOPortTag & x"02" & PWMTag & PWMAOutPin,              -- I/O 31
+		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 21
+		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 22
+		IOPortTag & x"00" & NullTag & x"00",                -- I/O 23 BSPI 1 CS4Pin            
+		IOPortTag & x"04" & StepGenTag & StepGenDirPin,       -- I/O 24
+		IOPortTag & x"04" & StepGenTag & StepGenStepPin,      -- I/O 25	
+		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 26
+		IOPortTag & x"03" & PWMTag & PWMAOutPin,              -- I/O 27	
+		IOPortTag & x"01" & BSPITag & BSPICS3Pin,             -- I/O 28 
+		IOPortTag & x"03" & StepGenTag & StepGenDirPin,       -- I/O 29 
+		IOPortTag & x"03" & StepGenTag & StepGenStepPin,      -- I/O 30
+		IOPortTag & x"00" & BSPITag & BSPICS3Pin,             -- I/O 31
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 32
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 33
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 34 
@@ -151,14 +151,14 @@ package PIN_DUEX5_96 is
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 41 
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 42
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 43
-		IOPortTag & x"00" & BSPITag & BSPIClkPin,             -- I/O 44
-		IOPortTag & x"00" & BSPITag & BSPIOutPin,             -- I/O 45
-		IOPortTag & x"00" & BSPITag & BSPIInPin,              -- I/O 46
-		IOPortTag & x"00" & BSPITag & BSPICS0Pin,             -- I/O 47						
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 48   
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 49
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 50
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 51
+		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 44
+		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 45
+		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 46
+		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 47						
+		IOPortTag & x"00" & BSPITag & BSPICS0Pin,             -- I/O 48   
+		IOPortTag & x"00" & BSPITag & BSPIInPin,              -- I/O 49
+		IOPortTag & x"00" & BSPITag & BSPIOutPin,             -- I/O 50
+		IOPortTag & x"00" & BSPITag & BSPIClkPin,             -- I/O 51
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 52
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 53
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 54
