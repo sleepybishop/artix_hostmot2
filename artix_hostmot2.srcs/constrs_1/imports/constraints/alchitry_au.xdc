@@ -189,11 +189,11 @@ set_property PACKAGE_PIN p9 [get_ports {IOBITS[27]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[27]}]
 set_property DRIVE 24 [get_ports {IOBITS[27]}]
 
-set_property PACKAGE_PIN r6 [get_ports {IOBITS[28]}]
+set_property PACKAGE_PIN r7 [get_ports {IOBITS[28]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[28]}]
 set_property DRIVE 24 [get_ports {IOBITS[28]}]
 
-set_property PACKAGE_PIN r7 [get_ports {IOBITS[29]}]
+set_property PACKAGE_PIN r6 [get_ports {IOBITS[29]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[29]}]
 set_property DRIVE 24 [get_ports {IOBITS[29]}]
 
