@@ -111,34 +111,34 @@ package PIN_DUEX5_96 is
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 01
 		IOPortTag & x"00" & StepGenTag & StepGenStepPin,      -- I/O 02	
 		IOPortTag & x"00" & StepGenTag & StepGenDirPin,       -- I/O 03	
-		IOPortTag & x"01" & BSPITag & BSPICS0Pin,             -- I/O 04	
+		IOPortTag & x"00" & BSPITag & BSPICS0Pin,             -- I/O 04	
 		IOPortTag & x"00" & PWMTag & PWMAOutPin,              -- I/O 05	
-		IOPortTag & x"00" & BSPITag & BSPICS1Pin,             -- I/O 06	
+		IOPortTag & x"01" & BSPITag & BSPICS1Pin,             -- I/O 06	
 		IOPortTag & x"01" & StepGenTag & StepGenStepPin,      -- I/O 07	
 		IOPortTag & x"01" & StepGenTag & StepGenDirPin,       -- I/O 08	
-		IOPortTag & x"01" & BSPITag & BSPICS0Pin,             -- I/O 09	
+		IOPortTag & x"00" & BSPITag & BSPICS1Pin,             -- I/O 09	
 		IOPortTag & x"01" & PWMTag & PWMAOutPin,              -- I/O 10
-		IOPortTag & x"00" & BSPITag & BSPICS2Pin,             -- I/O 11
+		IOPortTag & x"01" & BSPITag & BSPICS2Pin,             -- I/O 11
 		IOPortTag & x"02" & StepGenTag & StepGenStepPin,      -- I/O 12
 		IOPortTag & x"02" & StepGenTag & StepGenDirPin,       -- I/O 13
-		IOPortTag & x"01" & BSPITag & BSPICS0Pin,             -- I/O 14
+		IOPortTag & x"00" & BSPITag & BSPICS2Pin,             -- I/O 14
 		IOPortTag & x"02" & PWMTag & PWMAOutPin,              -- I/O 15
-		IOPortTag & x"01" & BSPITag & BSPIInPin,              -- I/O 16
-		IOPortTag & x"01" & BSPITag & BSPIOutPin,             -- I/O 17
-		IOPortTag & x"01" & BSPITag & BSPIClkPin,             -- I/O 18
+		IOPortTag & x"00" & BSPITag & BSPIInPin,              -- I/O 16
+		IOPortTag & x"00" & BSPITag & BSPIOutPin,             -- I/O 17
+		IOPortTag & x"00" & BSPITag & BSPIClkPin,             -- I/O 18
 		IOPortTag & x"04" & PWMTag & PWMAOutPin,              -- I/O 19
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 20
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 21
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 22
-		IOPortTag & x"01" & BSPITag & BSPICS0Pin,             -- I/O 23            
+		IOPortTag & x"00" & BSPITag & BSPICS4Pin,             -- I/O 23            
 		IOPortTag & x"04" & StepGenTag & StepGenDirPin,       -- I/O 24
 		IOPortTag & x"04" & StepGenTag & StepGenStepPin,      -- I/O 25	
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 26
 		IOPortTag & x"03" & PWMTag & PWMAOutPin,              -- I/O 27	
-		IOPortTag & x"01" & BSPITag & BSPICS0Pin,             -- I/O 28 
+		IOPortTag & x"00" & BSPITag & BSPICS3Pin,             -- I/O 28 
 		IOPortTag & x"03" & StepGenTag & StepGenDirPin,       -- I/O 29 
 		IOPortTag & x"03" & StepGenTag & StepGenStepPin,      -- I/O 30
-		IOPortTag & x"00" & BSPITag & BSPICS3Pin,             -- I/O 31
+		IOPortTag & x"01" & BSPITag & BSPICS3Pin,             -- I/O 31
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 32
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 33
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 34 
@@ -155,10 +155,10 @@ package PIN_DUEX5_96 is
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 45
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 46
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 47						
-		IOPortTag & x"00" & BSPITag & BSPICS0Pin,             -- I/O 48   
-		IOPortTag & x"00" & BSPITag & BSPIInPin,              -- I/O 49
-		IOPortTag & x"00" & BSPITag & BSPIOutPin,             -- I/O 50
-		IOPortTag & x"00" & BSPITag & BSPIClkPin,             -- I/O 51
+		IOPortTag & x"01" & BSPITag & BSPICS0Pin,             -- I/O 48   
+		IOPortTag & x"01" & BSPITag & BSPIInPin,              -- I/O 49
+		IOPortTag & x"01" & BSPITag & BSPIOutPin,             -- I/O 50
+		IOPortTag & x"01" & BSPITag & BSPIClkPin,             -- I/O 51
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 52
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 53
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 54
