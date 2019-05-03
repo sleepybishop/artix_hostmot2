@@ -78,7 +78,7 @@ package PIN_DUEX5_96 is
 	(PWMTag,                x"00",  ClockHighTag,       x"05",  PWMValAddr&PadT,                PWMNumRegs,             x"00",  PWMMPBitMask),
 	(ADCTag,                x"00",  ClockLowTag,        x"01",  ADCAddr&PadT,                   ADCNumRegs,             x"00",  ADCMPBitMask),
 	(BSPITag,               x"00",  ClockLowTag,        x"02",  BSPIDataAddr&PadT,              BSPINumRegs,            x"11",  BSPIMPBitMask),
-	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
+	(QcountTag,             x"02",  ClockLowTag,        x"06",  QcounterAddr&PadT,              QCounterNumRegs,        x"00",  QCounterMPBitMask),
 	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
 	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
 	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
@@ -171,9 +171,9 @@ package PIN_DUEX5_96 is
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 61
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 62
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 63
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 64
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 65
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 66
+		IOPortTag & x"00" & QCountTag & QCountQAPin,          -- I/O 64
+		IOPortTag & x"00" & QCountTag & QCountQBPin,          -- I/O 65
+		IOPortTag & x"00" & QCountTag & QCountIdxPin,         -- I/O 66
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 67
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 68
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 69
