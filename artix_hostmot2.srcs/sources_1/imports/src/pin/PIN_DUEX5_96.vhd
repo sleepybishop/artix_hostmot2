@@ -74,7 +74,7 @@ package PIN_DUEX5_96 is
 	(WatchDogTag,           x"00",  ClockLowTag,        x"01",  WatchDogTimeAddr&PadT,          WatchDogNumRegs,        x"00",  WatchDogMPBitMask),
 	(IOPortTag,             x"00",  ClockLowTag,        x"03",  PortAddr&PadT,                  IOPortNumRegs,          x"00",  IOPortMPBitMask),
 	(LEDTag,                x"00",  ClockLowTag,        x"01",  LEDAddr&PadT,                   LEDNumRegs,             x"00",  LEDMPBitMask),
-	(StepGenTag,            x"02",  ClockLowTag,        x"05",  StepGenRateAddr&PadT,           StepGenNumRegs,         x"00",  StepGenMPBitMask),
+	(StepGenTag,            x"02",  ClockLowTag,        x"06",  StepGenRateAddr&PadT,           StepGenNumRegs,         x"00",  StepGenMPBitMask),
 	(PWMTag,                x"00",  ClockHighTag,       x"05",  PWMValAddr&PadT,                PWMNumRegs,             x"00",  PWMMPBitMask),
 	(ADCTag,                x"00",  ClockLowTag,        x"01",  ADCAddr&PadT,                   ADCNumRegs,             x"00",  ADCMPBitMask),
 	(BSPITag,               x"00",  ClockLowTag,        x"02",  BSPIDataAddr&PadT,              BSPINumRegs,            x"11",  BSPIMPBitMask),
