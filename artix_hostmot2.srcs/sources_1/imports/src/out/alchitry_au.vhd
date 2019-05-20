@@ -206,10 +206,10 @@ signal clkfx2: std_logic;
 signal RST  : std_logic;    -- reset signal
 signal R_LEDS : std_logic_vector(LEDCount -1 downto 0);
 -- signals for storing most recent sample from each adc	
-signal adc_enable : std_logic := '1';
+signal adc_enable : std_logic;
 signal adc_ready : std_logic;
 signal adc_samples : varray12bit(7 downto 0);
-signal adc_snap : std_logic_vector( 15 downto 0) := (others => '0');
+signal adc_snap : std_logic_vector( 15 downto 0);
 signal adc_mux : std_logic_vector( 4 downto 0);
 signal adc_chan : std_logic_vector( 6 downto 0);
 
@@ -576,15 +576,15 @@ doADCtask : process(CLK)
 	begin	
     if rising_edge(clk) then
         if adc_ready = '1' then -- if there is a new sample available
-            case adc_chan is
-            when "10000" => adc_samples(0) <= adc_snap(15 downto 4); -- vaux[0]
-            when "10001" => adc_samples(1) <= adc_snap(15 downto 4); -- vaux[1]
-            when "10010" => adc_samples(2) <= adc_snap(15 downto 4); -- vaux[2]
-            when "10011" => adc_samples(3) <= adc_snap(15 downto 4); -- vaux[3]            
-            when "00000" => adc_samples(4) <= adc_snap(15 downto 4); -- internal temp
-            when "00001" => adc_samples(5) <= adc_snap(15 downto 4); -- vccint
-            when "00010" => adc_samples(6) <= adc_snap(15 downto 4); -- vccaux
-            when "00011" => adc_samples(7) <= adc_snap(15 downto 4); -- vp/vn
+            case adc_chan is          
+            when "00000" => adc_samples(0) <= adc_snap(15 downto 4); -- internal temp
+            when "00001" => adc_samples(1) <= adc_snap(15 downto 4); -- vccint
+            when "00010" => adc_samples(2) <= adc_snap(15 downto 4); -- vccaux
+            when "00011" => adc_samples(3) <= adc_snap(15 downto 4); -- vp/vn
+            when "10000" => adc_samples(4) <= adc_snap(15 downto 4); -- vaux[0]
+            when "10001" => adc_samples(5) <= adc_snap(15 downto 4); -- vaux[1]
+            when "10010" => adc_samples(6) <= adc_snap(15 downto 4); -- vaux[2]
+            when "10011" => adc_samples(7) <= adc_snap(15 downto 4); -- vaux[3]              
             when others => null;
             end case;
         end if; 
