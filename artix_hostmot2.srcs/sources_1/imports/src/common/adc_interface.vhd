@@ -14,7 +14,6 @@ entity adc_interface is
     do_out          : out  STD_LOGIC_VECTOR (15 downto 0);   -- Output data bus for dynamic reconfiguration port
     drdy_out        : out  STD_LOGIC;                        -- Data ready signal for the dynamic reconfiguration port
     dclk_in         : in  STD_LOGIC;                         -- Clock input for the dynamic reconfiguration port
-    reset_in        : in  STD_LOGIC;                         -- Reset signal for the System Monitor control logic
     busy_out        : out  STD_LOGIC;                        -- ADC Busy signal
     channel_out     : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
     eoc_out         : out  STD_LOGIC;                        -- End of Conversion Signal
@@ -90,10 +89,10 @@ architecture xilinx of adc_interface is
 
     U0 : XADC
     generic map(
-        INIT_40 => X"1803", -- config reg 0
-        INIT_41 => X"31AF", -- config reg 1
+        INIT_40 => X"0000", -- config reg 0
+        INIT_41 => X"21EF", -- config reg 1
         INIT_42 => X"0400", -- config reg 2
-        INIT_48 => X"0100", -- Sequencer channel selection
+        INIT_48 => X"0800", -- Sequencer channel selection
         INIT_49 => X"0000", -- Sequencer channel selection
         INIT_4A => X"0000", -- Sequencer Average selection
         INIT_4B => X"0000", -- Sequencer Average selection
@@ -123,7 +122,7 @@ architecture xilinx of adc_interface is
         DEN                 => den_in,
         DI(15 downto 0)     => di_in(15 downto 0),
         DWE                 => dwe_in,
-        RESET               => reset_in,
+        RESET               => '0',
         VAUXN(15 downto 0)  => aux_channel_n(15 downto 0),
         VAUXP(15 downto 0)  => aux_channel_p(15 downto 0),
         ALM                 => alm_int,

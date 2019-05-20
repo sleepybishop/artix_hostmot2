@@ -82,7 +82,6 @@ use work.FixICap.all;
 use work.alchitry_au_card.all;
 -----------------------------------------------------------------------
 use work.PIN_DUEX5_96.all;
---use work.PIN_ULTIMAKER_96.all;
 --use work.PIN_IO_96.all;
 ----------------------------------------------------------------------
 	
@@ -120,8 +119,11 @@ entity tophm2 is -- for alchitry au spi
 -- signals unique to alchitry au fpga --
 				USB_RX: in std_logic;
 				USB_TX: out std_logic;
-				RST_N : in  std_logic                    -- reset button on board (inverted)
+				RST_N : in  std_logic;                    -- reset button on board (inverted)
 -- signals for adc
+				ADC_MUXP: out std_logic_vector(1 downto 0); 
+				AVN: in std_logic;
+				AVP: in std_logic
 		 );
 end tophm2;
 
@@ -204,38 +206,34 @@ signal clkfx2: std_logic;
 signal RST  : std_logic;    -- reset signal
 signal R_LEDS : std_logic_vector(LEDCount -1 downto 0);
 -- signals for storing most recent sample from each adc	
-signal adc_channel : std_logic_vector( 4 downto 0) := (others => '0');
-signal adc_enable  : std_logic := '1';
-signal adc_ready   : std_logic;
-signal adc_data    : std_logic_vector( 15 downto 0) := (others => '0');
-signal adc_datain  : std_logic_vector(15 downto 0) := (others => '0');
-signal adc_addr    : std_logic_vector(6 downto 0) := (others => '0');
+signal adc_chan_set : std_logic_vector( 6 downto 0) := (others => '0');
+signal adc_enable : std_logic;
+signal adc_ready : std_logic;
 signal adc_samples : varray12bit(7 downto 0);
+signal adc_snap : std_logic_vector( 15 downto 0) := (others => '0');
+signal adc_mux : std_logic_vector( 4 downto 0);
+signal adc_chan : std_logic_vector( 4 downto 0);
 
 begin
 
 RST <= NOT RST_N;
 LEDS <= NOT R_LEDS;
 
---adc_interface : entity work.adc_interface
---	port map (
---	   dclk_in      =>  CLK,
---       reset_in     =>  RST_N,
---       daddr_in     => (others => '0'),
---       den_in       => adc_enable,
---       di_in        => (others => '0'),
---       dwe_in       => '0',
---       do_out       => adc_data,
---       drdy_out     => adc_ready,
-        --busy_out    =>  ,
---        channel_out =>  adc_channel,
-        --eoc_out     =>  adc_enable,
-        --eos_out     =>  ,
-        --alarm_out   =>  ,
---       muxaddr_out  =>  ADCMUX,
---       vp_in        => AVP,
---       vn_in        => AVN
---	);	
+adc_interface : entity work.adc_interface
+	port map (
+	   dclk_in      =>  CLK,
+       daddr_in     => adc_chan_set,
+       den_in       => adc_enable,
+       drdy_out     => adc_ready,
+       di_in        => (others => '0'),
+       dwe_in       => '0',
+       do_out       => adc_snap,
+       eoc_out      => adc_enable,
+       channel_out  => adc_chan,
+       muxaddr_out  => adc_mux,
+       vp_in        => AVP,
+       vn_in        => AVN
+	);	
 
 ahostmot2: entity work.HostMot2
 	generic map (
@@ -577,9 +575,21 @@ mmcm_adv_inst: MMCME2_ADV
 
 doADCtask : process(CLK)	
 	begin	
-		if rising_edge(clk) then	
-	
-		end if;	
+    if rising_edge(clk) then
+        if adc_ready = '1' then -- if there is a new sample available
+            case adc_chan is
+            when "0000" => adc_samples(0) <= adc_snap(15 downto 4);
+            when "0001" => adc_samples(1) <= adc_snap(15 downto 4);
+            when "0010" => adc_samples(2) <= adc_snap(15 downto 4);
+            when "0011" => adc_samples(3) <= adc_snap(15 downto 4);
+            when "0100" => adc_samples(4) <= adc_snap(15 downto 4);
+            when "0101" => adc_samples(5) <= adc_snap(15 downto 4);
+            when "0110" => adc_samples(6) <= adc_snap(15 downto 4);
+            when "1111" => adc_samples(7) <= adc_snap(15 downto 4);
+            when others => null;
+            end case;
+        end if; 
+    end if;	
 	end process doADCtask;	
 end;
 
