@@ -89,14 +89,14 @@ architecture xilinx of adc_interface is
 
     U0 : XADC
     generic map(
-        INIT_40 => X"0000", -- config reg 0
+        INIT_40 => X"0803", -- config reg 0
         INIT_41 => X"21EF", -- config reg 1
         INIT_42 => X"0400", -- config reg 2
-        INIT_48 => X"0800", -- Sequencer channel selection
-        INIT_49 => X"0000", -- Sequencer channel selection
+        INIT_48 => X"0F00", -- Sequencer channel selection
+        INIT_49 => X"000F", -- Sequencer channel selection
         INIT_4A => X"0000", -- Sequencer Average selection
         INIT_4B => X"0000", -- Sequencer Average selection
-        INIT_4C => X"0000", -- Sequencer Bipolar selection
+        INIT_4C => X"0800", -- Sequencer Bipolar selection
         INIT_4D => X"0000", -- Sequencer Bipolar selection
         INIT_4E => X"0000", -- Sequencer Acq time selection
         INIT_4F => X"0000", -- Sequencer Acq time selection
