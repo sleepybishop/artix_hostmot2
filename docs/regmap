@@ -146,7 +146,7 @@ Watchdog Cookie location
 timeout value.
 
 
- Demand mode DMA logic
+Demand mode DMA logic
 
 Bit 0 = Enable Demand mode DMA
 Bit 1 = DRQ status, - = active request
@@ -211,8 +211,7 @@ This may be the GPIO output register bit or alternate source. The input is
 not inverted.
 
 **************************************************
-Fanuc serial pulsecoder interface. Interfaces to Fanuc serial 
-absolute (aA) and serial incremental (aI) encoders
+Fanuc absolute encoder interface. Interfaces to Fanuc serial absolute encoders
 
 DataReg0
 
@@ -294,40 +293,32 @@ re-arranged this is Control_Register_1 = 1048576*Bitrate/ClockLow
 (data is dont-care) starts transfers on all FanucAbs modules that have their 
 global start mask set. 
 
-Reading the Global start register returns the busy status (1=busy) 
-of each channel, with bit# = channel# A channel is busy if the 
-transfer is in progress or the data is stale (its already been read)  
+Reading the Global start register returns the busy status of each channel, 
+with bit# = channel# A channel is busy if the transfer is in progress or 
+the data is stale (its already been read)  
 
-Fanuc data format (76 bits): So far just for Aa64 (860-360-TXXX)
-bits 0..4 	constant : = 0b00101
+Fanuc data format (76 bits): So far just for Aa64 (860-360-xxx)
+bits 0..4 	constant : encoder type?
 bit  5     	1=battery fail
-bits 6,7	unknown = 0b10,a860-360 0b00,a860-370 
+bits 6,7	unknown
 bit  8		1=un-indexed
 bits 9..17	unknown, perhaps for higher res encoders
 bits 18..33	16 bit absolute encoder data (0..65535 for one turn)
-bits 34..35     unknown = 0b01
+bits 34..35      unknown
 bits 36..51	16 bit absolute turns count
-bits 52,53	unknown = 0b01
+bits 52,53	unknown
 bits 54..63	10 bit absolute commutation encoder (four 0.1023 cycles per turn)
-bits 64..70	unknown = 0b1100000
+bits 64..70	unknown
 bits 71..75	ITU CRC-5 (calculated MSB first)
-
-Note: Aa1000 (860-370-TXXX) is similar with bits 10..15 being 
-additional lower order count bits (only 12..15 being of much use)
-extending the 16 bit count from bits 18..33 with bits 12..15  
-gives a resolution of 1048576 counts/turn
 
 These encoders are absolute if the battery backup is maintained since the 
 last homing. This can be determined by the status of the un-indexed bit, 
-at least until the encoder crosses index. 
-
-Surprisingly (well it surprised me anyway) the encoders maintain position 
-and count with battery power alone. It appears that they keep the LEDS/
-processor alive with a few 10s of uA of battery power (probably low duty 
-cycle LED pulsing/analog circuits power cycling). 
-
-This can be verified by reading the battery current and then moving the 
-encoder, it goes from a few 10s of uA to many mA with a slow encoder move.
+at least until the encoder crosses index. Surprisingly 
+(well it surprised me anyway) the encoders maintain position with battery 
+power alone. It appears that they keep the LEDS/processor alive with a 
+few uA of battery power (probably low duty cycle LED pulsing/analog circuits 
+power cycling). This can be verified by reading the battery current and then 
+moving the encoder, it goes from a few uA to many mA with a slow encoder move.
 
 The commutation track is always absolute so can be used for commutation 
 data regardless of the index status. Note that the commutation track
@@ -337,55 +328,6 @@ Note that the timing/baudrate are all precalculated so should not need
 changing, but can be changed by setting the setup enable bit in control reg 0
 
 **************************************************
-
-Scaler-counter
-
-The scaler counter component is a simple multi-channel frequency 
-counter for multi channel A-Ds and other simple rate counting 
-applications. The counters are 16 bits wide and always in pairs.
-both the current count and the latched count are available. A common
-free running 32 bit timestamp register is provided for rate calculations
-The counts are all latched when the timebase register is read, allowing 
-simple DeltaCount/DeltaTime rate calculations.
-The counters have a 3 clock input digital filter that limits the
-maximum count rate to ClockLow/6 (minimum detectable pulse width 3/Clocklow)
-
-Count registers (read only)
-
-Bits 15..0	CountA
-Bits 31..16	CountB
-
-0x1B00		Count register 0
-0x1B04		Count register 1
-0x1B08		Count register 2
-0x1B0C		Count register 3
-0x1B10		Count register 4
-...
-
-Latched count registers read only
-
-Bits 15..0	Latched CountA
-Bits 31..16	Latched CountB
-
-0x1C00		Latched Count register 0
-0x1C04		Latched Count register 1
-0x1C08		Latched Count register 2
-0x1C0C		Latched Count register 3
-0x1C10		Latched Count register 4
-...
-
-ScalerTime register read only
-
-0x1D00		32 bit timestamp up counter running at ClockLow
-		Reads of the timestamp register latch all counters
-
-
-
-********************************************************************
-Step generator for step/dir generation. Works as a velocity mode servo
-with loop closed by host
-
-
 Step/dir generators currently 48 bit accumulator = 16 bits full step, 
 32 fractional step/rate. That is a 48 bit accumulator with a 32 bit rate 
 value (sign extended) and added to accumulator.
@@ -534,25 +476,16 @@ Step generator addition rate is (ClockLow*MasterDDSVal/2^32)
 
 Probably just set to 0xffffffff for most applications.
 
-Stepgen DPLL channel select register. This selects the DPLL timer channel 
-that all stepgens use for sampling the position
-
-0x2A00	 	Stepgen DPLL timer select register   	
-
-Bits 12..14	Stepgen position sample timer select (0 through 4)
-Bit 15		Stepgen timer sample enable (active high) 
-
-
 WaveGen: simple table driven waveform generator
 
 WaveGenRate
 
 32 bit register, sets rate of steps through table = WaveGenRate/2^32*ClockHigh 
 
-0x2B00 wavegen 0 rate
-0x2B04 wavegen 1 rate
-0x2B08 wavegen 2 rate
-0x2B0C wavegen 3 rate
+0x2A00 wavegen 0 rate
+0x2A04 wavegen 1 rate
+0x2A08 wavegen 2 rate
+0x2A0C wavegen 3 rate
 ...
 
 WaveGenPDMRate
@@ -560,20 +493,20 @@ WaveGenPDMRate
 8 bit register, sets PDM clock, PDM clock = ClockHigh/(WaveGenPDMRate+2)
 any rate with MSB set will divide by one (0x80 or >)
 
-0x2C00 wavegen 0 PDM rate
-0x2C00 wavegen 1 PDM rate
-0x2C00 wavegen 2 PDM rate
-0x2C00 wavegen 3 PDM rate
+0x2B00 wavegen 0 PDM rate
+0x2B00 wavegen 1 PDM rate
+0x2B00 wavegen 2 PDM rate
+0x2B00 wavegen 3 PDM rate
 ...
 
 WaveGenLength
 
 10 bit register, sets table length (table pointer range is 0 --> WaveGenLength)
 
-0x2D00 wavegen 0 table length 
-0x2D04 wavegen 1 table length 
-0x2D08 wavegen 2 table length 
-0x2D0C wavegen 3 table length 
+0x2C00 wavegen 0 table length 
+0x2C04 wavegen 1 table length 
+0x2C08 wavegen 2 table length 
+0x2C0C wavegen 3 table length 
 ...
 
 WaveGenTablePtr
@@ -581,20 +514,20 @@ WaveGenTablePtr
 10 bit register for host access to table pointer, writes to table 
 must first write address pointer, and the write data.
 
-0x2E00 wavegen 0 table pointer
-0x2E04 wavegen 1 table pointer
-0x2E08 wavegen 2 table pointer
-0x2E0C wavegen 3 table pointer
+0x2D00 wavegen 0 table pointer
+0x2D04 wavegen 1 table pointer
+0x2D08 wavegen 2 table pointer
+0x2D0C wavegen 3 table pointer
 
 ...
  
 16 bit register for host access to table data, writes to table 
 must first write address pointer, and the write data.
 
-0x2F00 wavegen 0 table data
-0x2F04 wavegen 1 table data
-0x2F08 wavegen 2 table data
-0x2F0C wavegen 3 table data 
+0x2E00 wavegen 0 table data
+0x2E04 wavegen 1 table data
+0x2E08 wavegen 2 table data
+0x2E0C wavegen 3 table data 
 
 Table Data is 12 bit offset binary(2048 is '0") plus 4 trigger bits
 trigger bits are top 4 bits of data
@@ -642,7 +575,7 @@ bottom 16 bits is control register.
 
 Bit 31..16 = Latched count (Latch on index)
 
-Bit 15	Quad Error: set if quadrature sequence error
+Bit 15	Quad Error: reads: set if quadrature sequence error, writes: set to clear Quad Error
 Bit 14	AB mask polarity: A*B must be high for index gate
 Bit 13	LatchOnProbe 1 = Latch count on probe (Version 3 counters only)
 Bit 12	ProbePolarity 1 = active high         (Version 3 counters only)
@@ -672,10 +605,16 @@ Any divisor with MSb set = divide by 1
 count rate is ClockLow/(QFilterRate+2). 
 Any divisor with MSb set = divide by 1
 
-0x3500	 	QCounter DPLL timer select register   	
+0x3500  DPLL timer select register
 
-Bits 12..14	QCounter count sample timer select (0 through 4)
-Bit 15		QCounter DPLL timer sample enable (active high) 
+Bit 12  DPLL timer select bit 0
+Bit 13  DPLL timer select bit 1
+Bit 14  DPLL timer select bit 2
+Bit 15  DPLL timer enable, if set encoder is sampled by DPLL timer,
+if clear encoder count is sampled by host read
+
+Bits 12..15 select DPLL timers 0..4 
+Timer 0 is 0 offset, timers 1 through 4 have programmable offset
 
 
 MuxedQuadratureCounter Type 2 (with timestamp)
@@ -716,7 +655,7 @@ bottom 16 bits is control register
 
 Bit 31..16 = Latched count (Latch on index)
 
-Bit 15	Quad Error: set if quadrature sequence error
+Bit 15	Quad Error: reads: set if quadrature sequence error, writes: set to clear Quad Error
 Bit 14	AB mask polarity: A*B must be high for index gate
 Bit 13	LatchOnProbe 1 = Latch count on probe (Version 3 counters only)
 Bit 12	ProbePolarity 1 = active high         (Version 3 counters only)
@@ -747,11 +686,16 @@ Any divisor with MSb set = divide by 1
 count rate is ClockLow/(QFilterRate+2). 
 Any divisor with MSb (bit 11) set = divide by 1
 
-0x3B00	 	MuxedQCounter DPLL timer select register   	
+0x3B00  DPLL timer select register
 
-Bits 12..14	MuxedQCounter count sample timer select (0 through 4)
-Bit 15		MuxedQCounter DPLL timer sample enable (active high) 
+Bit 12 	DPLL timer select bit 0
+Bit 13  DPLL timer select bit 1
+Bit 14  DPLL timer select bit 2
+Bit 15  DPLL timer enable, if set encoder is sampled by DPLL timer, 
+if clear encoder count is sampled by host read
 
+Bits 12..15 select DPLL timers 0..4 
+Timer 0 is 0 offset, timers 1 through 4 have programmable offset
 
 Version 4 and greater muxed encoders have 4 bit muxed data deskew register 
 in top nibble (bits 28 ..31) of the QFilterRate register. 
@@ -833,17 +777,10 @@ except for debug and parameter tweaking or setting  resolver frequency
 Bit 15	    Write bit
 Bit 14	    Reset DSP/firmware download bit
 Bit 13	    Do-it bit	 
-Bit 11	    Command bit
-Bits 9..0  Parameter address   
+Bits 11..0  Parameter address   
 
 Firmware is host side downloadable so neither bitfile recompilation nor 
 Xilinx blockram loading tools are required to try new firmware.
-
-Currently only 4 commands:
-0x0800	      Reload waveform with current magnitude 
-0x0801	      Set excitation to 2.5 KHz
-0x0802	      Set excitation to 5 KHz
-0x0803	      Set Excitation to 10 KHz
 
 0x3D00	 32 bit Processor data register
 This is for access to the resolver modules parameters, normally not needed
@@ -890,6 +827,7 @@ PWM generators (With FPGA compile time constant PWM width = 13)
 0x411C	PWMVal 7 Right justified 9..12 bit PWM in bits 27..16 DIR is bit 31
 ...
  	
+
 PWM mode registers 6 bits
 
 Bit 1,0 = width select  (With FPGA compile time constant PWM width = 13)
@@ -1037,48 +975,39 @@ BISS Data register
 0x4A00 BISS 0 32 bit data register
 0x4A04 BISS 1 32 bit data register
 0x4A08 BISS 2 32 bit data register
-..
+...
 
-This register is the top of a 16 deep x 32 wide LIFO stack. 
+This register is the top of a 16 deep x32 wide LIFO stack. 
 BISS data sizes greater that 32 bits are read by muliple reads 
 of the same address. Data is returned LSW first and right justified. 
-Data beyond the MSb should be ignored.
-Writes to the data register start a data transfer in selected channel.
+Writes to the data register start a data transfer in selected channel
 
-BISS Control register0
-
-0x4B00 BISS 0 Control register0
-0x4B04 BISS 1 Control register0
-0x4B08 BISS 2 Control register0
+BISS Control register 0
+0x4B00 BISS 0 Control register
+0x4B04 BISS 0 Control register
+0x4B08 BISS 0 Control register
 ...
 
 Bits 31..16	BISS DDS data rate register
-Bits 15..10	BISS Data digital filter time constant
-Bits 9..0	BISS data length in bits (1 to 512)
+Bits 15..10	BISS data digital filter setting in units of ClockHigh
+Bits  9..0	BISS data bits (1 to 512)
+
 
 The BISS data rate field sets the BISS clock rate. This rate is 
-(ClockHigh/65536)*BISS_DataRateReg.
+(ClockHigh/65536)*BISS_DataRateReg
 
-The BISS digital fiter time constant selects the time constant 
-for the BISS data input in units of ClockHigh periods. 
-Suggested value is BISS clock period /2. For example for a CLockHigh 
-frequency of 100 MHz, and a 10 MHz BISS clock, a register value of 5  
-(5x 10 nS = 50 nS = 1/2 of BISS clock period is suggested). 
-Note that a value of 0 is illegal and will prevent data transfer. 
+BISS Control register 1
+0x4C00
+0x4C04
+0x4C08
+...
 
-
-BISS Control register1
-
-0x4C00 BISS 0 Control register1
-0x4C04 BISS 1 Control register1
-0x4C08 BISS 2 Control register1
-
-Bit 15 	      	Data Available (read only)i
-Bits 14..12	Timer select register
-Bit 11		RX Go (read only)
-Bit 9		TStart Mask
-Bit 8		PStart Mask 		
-Bits 4..0	LIFO level (number of pops needed to read all data - read only)
+Bit 15		SyncDAV status (read only)
+Bits 14..12	DPLL Timer select register
+Bit 10		RGo status (read only) 		
+Bit  9          TStartMask
+Bit  8  	PStartMask
+Bits 4..0	words of Data to read (Read Only)
 
 
 The timer select register selects the desired timer output 
@@ -1087,7 +1016,6 @@ The TStartMask must be set to enable timer starts. The PStartMask
 must be set to enable global starts.
 
 BISS Global start register/busy status register
-
 0x4D00	    Writes to the global start register start data transfers in all
 	    BISS module that have the PStartMask set
 	    Reads here read back the busy status of each BISS module
@@ -1254,10 +1182,6 @@ Bits 16..19   = Chip select bits for SPI interface
 Bits 24..28   = Chip select delay = chip select valid delay before and 
                 after frame in (N+1 CLOCKLOW periods, N = 0 ..15
                 n>15 = 0 delay.
-Bit 29	      = Sample input data late. If this bit is set, slave output data
-                is sampled 1/2 clock cycle late. This is useful for higher 
-                clock rates, and for systems with large delays from 
-                clock to slave data valid.
 Bit 30        = Dont_Clear_Frame. If set, leave frame asserted at EOT.
                 This is for SPI devices that send or recv more than 32 bits 
                 of data. for example a 48 bit SPI access can be built from 
@@ -1343,10 +1267,8 @@ Bits 16..19   = Chip select bits for SPI interface
 Bits 24..28   = Chip select delay = chip select valid delay before and 
                 after frame in (N+1 CLOCKLOW periods, N = 0 ..15
                 n>15 = 0 delay. Normally meaning-less for DBSPI - set to >15
-Bit 29	      = Sample input data late. If this bit is set, slave output data
-                is sampled 1/2 clock cycle late. This is useful for higher 
-                clock rates, and for systems with large delays from 
-                clock to slave data valid.            
+Bit 29        = Sample Late. If set, sample the input 1/2 clock later 
+                than nominal SPI sample time
 Bit 30        = Dont_Clear_Frame. If set, leave frame asserted at EOT.
                 This is for SPI devices that send or recv more than 32 bits 
                 of data. for example a 48 bit SPI access can be built from 
@@ -1466,22 +1388,22 @@ Different offsets push different numbers of bytes on xmit FIFO
 Didn't use byte enables for compatibility with other (non PCI) 
 32 bit interfaces
 
-0x6100 UART 0 TXdata (push 1 byte)
-0x6104 UART 0 TXData (push 2 bytes)
-0x6108 UART 0 TXData (push 3 bytes)
-0x610C UART 0 TXData (push 4 bytes)
-0x6110 UART 1 TXdata (push 1 byte)
-0x6114 UART 1 TXData (push 2 bytes)
-0x6118 UART 1 TXData (push 3 bytes)
-0x611C UART 1 TXData (push 4 bytes)
-0x6120 UART 2 TXdata (push 1 byte)
-0x6124 UART 2 TXData (push 2 bytes)
-0x6128 UART 2 TXData (push 3 bytes)
-0x612C UART 2 TXData (push 4 bytes)
-0x6130 UART 3 TXdata (push 1 byte)
-0x6134 UART 3 TXData (push 2 bytes)
-0x6138 UART 3 TXData (push 3 bytes)
-0x613C UART 3 TXData (push 4 bytes)
+0x6100 UART TXdata 0 (push 1 byte)
+0x6104 UART TXData 0 (push 2 bytes)
+0x6108 UART TXData 0 (push 3 bytes)
+0x610C UART TXData 0 (push 4 bytes)
+0x6110 UART TXdata 1 (push 1 byte)
+0x6114 UART TXData 1 (push 2 bytes)
+0x6118 UART TXData 1 (push 3 bytes)
+0x611C UART TXData 1 (push 4 bytes)
+0x6120 UART TXdata 2 (push 1 byte)
+0x6124 UART TXData 2 (push 2 bytes)
+0x6128 UART TXData 2 (push 3 bytes)
+0x612C UART TXData 2 (push 4 bytes)
+0x6130 UART TXdata 3 (push 1 byte)
+0x6134 UART TXData 3 (push 2 bytes)
+0x6138 UART TXData 3 (push 3 bytes)
+0x613C UART TXData 3 (push 4 bytes)
 ...
 
 UART TX FIFO count register = number slots used in FIFO, 
@@ -1491,19 +1413,19 @@ so TX FIFO capacity is 16 Bytes for byte pushes, but 64 bytes with
 16 doubleword pushes.
 Writes to the FIFO count register clear the FIFO.
 
-0x6200 UART 0 TXFIFO Count
-0x6210 UART 1 TXFIFO Count
-0x6220 UART 2 TXFIFO Count
-0x6230 UART 3 TXFIFO Count
+0x6200 UART TXFIFO Count 0
+0x6210 UART TXFIFO Count 1
+0x6220 UART TXFIFO Count 2
+0x6230 UART TXFIFO Count 3
 ...
 
 TX Bitrate select register. TX bitrate is generated by a 20 bit 
 phase accumulator. Bitrate is: (TXBitrate_Register_Value/1048576)*ClockLow
 
-0x6300 UART 0 TX Bitrate Register
-0x6310 UART 1 TX Bitrate Register
-0x6320 UART 2 TX Bitrate Register
-0x6330 UART 3 TX Bitrate Register
+0x6300 UART TX Bitrate Register 0
+0x6310 UART TX Bitrate Register 1
+0x6320 UART TX Bitrate Register 2
+0x6330 UART TX Bitrate Register 3
 ...
 
 UART TX mode register controls TXEnable and TXEnable timing (for half duplex)
@@ -1522,52 +1444,52 @@ Bit 5 = DriveEnableAuto, When set, enables Drive when any data is in FIFO or
 Bit 6 = DriveEnableBit, If DriveEnableAuto is 0, controls Drive (
         for software control of Xmit drive)
 
-0x6400 UART 0 TX Mode register
-0x6410 UART 1 TX Mode register
-0x6420 UART 2 TX Mode register
-0x6430 UART 3 TX Mode register
+0x6400 UART TX Mode register 0
+0x6410 UART TX Mode register 1
+0x6420 UART TX Mode register 2
+0x6430 UART TX Mode register 3
 ...
 
 UART RX Data register, Different offsets pop different numbers of bytes 
 from RX FIFO, data is always right justified. FIFO depth is 16 bytes. 
 I may eventually change this to use byte enables.
 
-0x6500 UART 0 RX Data (POP 1 byte)
-0x6504 UART 0 RX Data (POP 2 bytes)
-0x6508 UART 0 RX Data (POP 3 bytes)
-0x650C UART 0 RX Data (POP 4 bytes)
-0x6510 UART 1 RX Data (POP 1 byte)
-0x6514 UART 1 RX Data (POP 2 bytes)
-0x6518 UART 1 RX Data (POP 3 bytes)
-0x651C UART 1 RX Data (POP 4 bytes)
-0x6520 UART 2 RX Data (POP 1 byte)
-0x6524 UART 2 RX Data (POP 2 bytes)
-0x6528 UART 2 RX Data (POP 3 bytes)
-0x652C UART 2 RX Data (POP 4 bytes)
-0x6530 UART 3 RX Data (POP 1 byte)
-0x6534 UART 3 RX Data (POP 2 bytes)
-0x6538 UART 3 RX Data (POP 3 bytes)
-0x653C UART 3 RX Data (POP 4 bytes)
+0x6500 UART RX Data 0 (POP 1 byte)
+0x6504 UART RX Data 0 (POP 2 bytes)
+0x6508 UART RX Data 0 (POP 3 bytes)
+0x650C UART RX Data 0 (POP 4 bytes)
+0x6510 UART RX Data 1 (POP 1 byte)
+0x6514 UART RX Data 1 (POP 2 bytes)
+0x6518 UART RX Data 1 (POP 3 bytes)
+0x651C UART RX Data 1 (POP 4 bytes)
+0x6520 UART RX Data 2 (POP 1 byte)
+0x6524 UART RX Data 2 (POP 2 bytes)
+0x6528 UART RX Data 2 (POP 3 bytes)
+0x652C UART RX Data 2 (POP 4 bytes)
+0x6530 UART RX Data 3 (POP 1 byte)
+0x6534 UART RX Data 3 (POP 2 bytes)
+0x6538 UART RX Data 3 (POP 3 bytes)
+0x653C UART RX Data 3 (POP 4 bytes)
 ...
 
 UART RX FIFO count register = number of bytes in RX FIFO 
 (5 bits right justified, other bits are undefined)
 Writes to the RX FIFO count register clear RX FIFO
 
-0x6600 UART 0 RXFIFO Count
-0x6610 UART 1 RXFIFO Count
-0x6620 UART 2 RXFIFO Count
-0x6630 UART 3 RXFIFO Count
+0x6600 UART RXFIFO Count 0
+0x6610 UART RXFIFO Count 1
+0x6620 UART RXFIFO Count 2
+0x6630 UART RXFIFO Count 3
 ...
 
 UART RX Bitrate select register. RX bitrate is generated by a 20 bit 
 phase accumulator. 
 Bitrate is (RXBitrate_Register_Value/1048576)*ClockLow
 
-0x6700 UART 0 RX Bitrate Register 
-0x6710 UART 1 RX Bitrate Register 
-0x6720 UART 2 RX Bitrate Register
-0x6730 UART 3 RX Bitrate Register
+0x6700 UART RX Bitrate Register 0
+0x6710 UART RX Bitrate Register 0
+0x6720 UART RX Bitrate Register 0
+0x6730 UART RX Bitrate Register 0
 ...
 
 RX MODE/STATUS Register
@@ -1583,10 +1505,10 @@ Bit 5 = LostDataError, indicates that data was received with no room in FIFO,
 Bit 6 = RXMask, RO RXMASK status
 Bit 7 = FIFO Has Data
 
-0x6800 UART 0 RX Mode/Status register
-0x6810 UART 1 RX Mode/Status register
-0x6820 UART 2 RX Mode/Status register
-0x6830 UART 3 RX Mode/Status register
+0x6800 UART RX Mode/Status register 0
+0x6810 UART RX Mode/Status register 1
+0x6820 UART RX Mode/Status register 2
+0x6830 UART RX Mode/Status register 3
 ...
 
 
@@ -1595,189 +1517,6 @@ Notes:
    logic. This is so that when 2 wire RS-485 type interfaces are used, the 
    transmit data ia not echoed back to the receiver
 
-*******************************************************************
-
-Packet UARTX
-Packet UARTs are designed simplify interfacing to packet mode remote devices
-that use gaps in the data stream for framing. These are standard asynchronous
-UARTs that have provisions for sending data in packets with interpacket gaps
-
-PktUARTx data register (write only)
-
-Send data is pushed (32 bits at a time) to this address. 
-Data bytes in a 32 bit word  are transmitted LS byte first
-and all packets start sending the LS byte of the 32 bit word
-(data in adjacent packets is _not_ packed)
-
-0x6100	  PktUARTx 0 data register	
-0x6104	  PktUARTx 1 data register	
-0x6108	  PktUARTx 2 data register	
-0x610c	  PktUARTx 3 data register	
-0x6110	  PktUARTx 4 data register	
-
-...
-
-PktUARTx  send count register read/write
-
-The send count register is written with the number of bytes to send
-after tha data has been pushed to the PktUARTx data register. 
-writing the send count register starts the transmission process.
-Send counts are written to 16 deep FIFO allowing up to 16 packets to be 
-sent in a burst (subject to data FIFO depth limits). Reads of the send 
-count register return the remaining packets to be sent.
-
-0x6200	PktUARTx 0 send count register
-0x6204	PktUARTx 1 send count register
-0x6208	PktUARTx 2 send count register
-0x620C	PktUARTx 3 send count register
-
-PktUARTx bit rate register
-
-The bit rate register set the transmit bit rate. 
-The bit rate is set with a 20 bit DDS, bit rate is 
-(register value/1048576)*ClockLow 
-
-0x6300	PktUARTx 0 bit rate register
-0x6304	PktUARTx 1 bit rate register
-0x6308	PktUARTx 2 bit rate register
-0x630C	PktUARTx 3 bit rate register
-
-
-PktUARTx mode register
-
-The PktUARTxMode register is used for setting and checking the
-PktUARTx's operation mode, timing and status
-
-Bit  21	       FrameBuffer Has Data
-Bits 20..16    Frames to send
-Bits 15..8     InterFrame delay in bit times
-Bit  7	       Send busy 
-Bit  6	       Drive Enable bit (enables external RS-422/485 Driver when set)
-Bit  5	       Drive enable Auto (Automatic external drive enable)
-Bit  4	       SCFIFO Error
-Bits 3..0      Drive enable delay (delay from asserting drive enable 
-     	       to start of data transmit. In CLock Low periods  
-
-
-0x6400  PktUARTx 0 mode register
-0x6404  PktUARTx 1 mode register
-0x6408  PktUARTx 2 mode register
-0x640C  PktUARTx 3 mode register
-
-The PktUARTx mode register has a special data command that clears the PktUARTx
-Clearing aborts any sends in process, clears the data FIFO and 
-clears the send count FIFO. To issue a clear command, you write 0x80010000
-to the PktUARTx mode register.
-
-
-Example: send 10 bytes of data 
-(data sent is 0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A)
-
-write 0x04030201 to PktUARTx data register
-write 0x08070605 to PktUARTx data register
-write 0x00000A09 to PktUARTx data register  (note right justify)
-
-Note that the number of 32 bit writes to the PktUARTx data register
-will always be rounded up to full 32 bit words 
-(Bytes_Sent + 3) div 4
-
-write 0x0000000A to PktUARTx sendcount register
-
-
-
-PktUARTr data register (read only)
-
-Receive data is popped (32 bits at a time) from this address. 
-Data bytes in a 32 bit word  are received LS byte first
-and all receive packets begin in the LS byte of the 32 bit word
-(data in adjacent packets tha are not multiples of 4 bytes
-are _not_ packed)
-
-0x6500	  PktUARTr 0 data register	
-0x6504	  PktUARTr 1 data register	
-0x6508	  PktUARTr 2 data register	
-0x650c	  PktUARTr 3 data register	
-0x6510	  PktUARTr 4 data register	
-
-...
-
-PktUARTr  receive count register read only
-
-The receive count register is a FIFO that contains the byte counts 
-of recieved packets. Since it is a FIFO it must only be read once after it 
-has be determined that there are packets available to read.
-Bits 31..16	  Unused
-Bit 15 		  Overrun error in this packet
-Bit 14 		  False Start bit error in this packet
-
-Bits 9..0	  bytes in receive packet  
-
-
-0x6600  PktUARTr 0 receive count register
-0x6604	PktUARTr 1 receive count register
-0x6608	PktUARTr 2 recieve count register
-0x660C	PktUARTr 3 receive count register
-
-PktUARTx bit rate register
-
-The bit rate register set the receive bit rate. 
-The bit rate is set with a 20 bit DDS, bit rate is 
-(register value/1048576)*ClockLow 
-
-0x6700	PktUARTr 0 bit rate register
-0x6704	PktUARTr 1 bit rate register
-0x6708	PktUARTr 2 bit rate register
-0x670C	PktUARTr 3 bit rate register
-
-
-PktUARTr mode register
-
-The PktUARTrMode register is used for setting and checking the PktUARTr's 
-operation mode, timing, and status
-Bit  21	       FrameBuffer has data	
-Bits 20..16    Frames received
-Bits 15..8     InterFrame delay in bit times
-Bit  7	       Buffer error (RX idle but data in RX data FIFO) read only
-Bit  6	       RXMask
-Bit  5         Unused
-Bit  4	       RCFIFO Error
-Bit  3	       RXEnable (must be set to receive packets) 
-Bit  2	       RXMask Enable (enables input data masking when transmitting)
-Bit  1	       Overrun error (no stop bit when expected) (sticky)
-Bit  0	       False Start bit error (sticky)
-
-0x6800  PktUARTr 0 mode register
-0x6804  PktUARTr 1 mode register
-0x6808  PktUARTr 2 mode register
-0x680C  PktUARTr 3 mode register
-
-The PktUARTx mode register has a special data command that clears the PktUARTr
-Clearing aborts any receives in process, clears the data FIFO and 
-clears the receive count FIFO. To issue a clear command, you write 0x80010000
-to the PktUARTr mode register.
-
-The RX interframe delay is always set shorter than the TX interframe delay
-to guarantee proper framing detection. LBP16 sets the RX interframe delay 
-to 2 character times (20 bit times) and the TX interframe delay to 4 character 
-times (40 bit times)
-
-Example receive a packet with 7 bytes (0x01,0x02,0x03,0x04,0x05,0x06,0x07)
-
-First poll the mode register for a non zero frames recieved count 
-(mode register bits 20..16). Then read the receive byte count of 
-the first packet from the receive count FIFO  and mask the lower 10 bits to
-get the receive packet byte count) then read the 7 bytes of packet 
-data from the PktUARTr data register:
-
-Read PktUARTr data reg --> 0x04030201
-Read PktUARTr data reg --> 0xXX070605
-
-Note that the number of 32 bit reads from the PktUARTr 
-data register will always be rounded up to full 32 bit words 
-(Bytes_Received + 3) div 4 
-
-
-***********************************************************************
 
 Simple SSI interface:
 
@@ -2045,3 +1784,128 @@ with a 7I37), the 8 output bits can be updated in a single byte write
 thats part of a sequence in the translation RAM. The side effect of this 
 is that the 16 unused output bits that coorespond to the input bits on 
 the port _will_ be written with random data.
+
+
+XfrmrOut: The xfrmrout module is used for isolated outputs
+using a transformer/rectifier to drive a MOSFET gate
+
+0x7D00        R/W XfrmrOutData  1 to 31 bits of output data per module (1=on)
+Bits 0..30 active high data control 
+
+0x7E00        XfrmrOutRate  drive frequency setting divisor and enable
+Bits 0..11    Rate divisor sets frequency out 
+              frequency=(ClockLow/(Divisor+2))/2
+Bit 12        Enable bit  (high to enable) Should be enabled only after I/O
+              is setup
+
+
+InMux: Input multiplexor/expander: uses external multiplexor chips to 
+expand inputs. Debounce filtering is provided with an option of long or
+short time on a per input basis. Up to 4 MPG encoder counters are provided
+
+0x8000        Control Register
+Bits 0..4     MaxBit R/O last mux address (add 1 for number of bits scanned) 
+Bit 5         Global invert R/W (inverts all input bits)
+Bits 6..15    Rate_Divisor R/W
+Bits 16..21   Short time register R/W (0 to 63 scans)
+Bits 22..31   Long time register R/W (0 to 1023 scans)
+ 
+Per channel scan rate is (ClockLow/4)/(Rate_divisor+1)
+Total scan rate is per channel scan rate/(MaxBit+1)
+
+0x8100	     Filter Register  RW (width = MaxBit+1)
+
+A 1 bit in the filter register selects the long time input filter for
+the corresponding input bit, a 0 bit selects the short time. 
+
+0x8200       Filtered Data R/O filtered demuxed data
+
+0x8300       Raw Data R/O raw demuxed data
+
+0x8400       MPG registers 0..3 all 8 bit counters      
+(0=LSByte = ins 0,1) etc
+0x8400 write LS bit of each byte is mode bit, 0 = 1X mode 1 = 4X mode
+
+InM: Input conditioning/Debounce filtering is provided with an option of long or
+short time on a per input basis. Up to 4 mpg encoder channels are provided
+same register map as InMux but doesnt use externel mux
+
+0x8500        Control Register
+Bits 0..4     MaxBit R/O last address (add 1 for number of bits scanned) 
+Bit 5         Global invert R/W (inverts all input bits)
+Bits 6..15    Rate_Divisor R/W
+Bits 16..21   Short time register R/W (0 to 63 scans)
+Bits 22..31   Long time register R/W (0 to 1023 scans)
+ 
+Per channel scan rate is (ClockLow/4)/(Rate_divisor+1)
+Total scan rate is per channel scan rate/(MaxBit+1)
+
+0x8600	     Filter Register  RW (width = MaxBit+1)
+
+A 1 bit in the filter register selects the long time input filter for
+the corresponding input bit, a 0 bit selects the short time. 
+
+0x8700       Filtered Data R/O filtered demuxed data
+
+0x8800       Raw Data R/O raw demuxed data
+
+0x8900 read  MPG registers 0..3 all 8 bit counters 
+(0=LSByte = ins 0,1) etc
+0x8900 write LS bit of each byte is mode bit, 0 = 1X mode 1 = 4X mode
+
+
+DataPainter: 1 bit or 8 bit PWM output motion synchronized data output for 
+laser raster/general surface painting modulation
+
+Patterned after the step generators currently 48 bit accumulator = 16 bits data count, 
+32 fractional data/rate. That is a 48 bit accumulator with a 32 bit rate added to accumulator.
+Data to be output is pushed on a 32 deep by 32 wide FIFO and shifted out 1 bit at a time
+(MSb first) in bit mode. In PWM mode each output FIFO word contains 4 PWM data bytes (MSB first)
+
+0x8A00	      Data rate register (R/W)
+
+0x8B00	      32 bit top of accumulator = 16.16 full.fractional data count : Read/write
+
+0x8C00	      Mode0 register, (RT control)
+Bit 0	      ProgramMode, R/W. If set DataGate is controlled by ModeReg0 ProgramGate
+Bit 1	      ProgramGate, R/W. Controls DataGate if ProgramMode is set, '1' = on
+    	      cleared by FIFO underrun
+Bit 2	      OffData, R/W. Set output state when DataGate is off
+Bit 3	      Hard Gate PWM, If set, gate off PWM at bit level (set output to OffData state when gated)
+              If clear, continue to generate PWM when gated off using OffPWM value in mode1 register        
+Bit 4	      EnableStart, R/W. Enables DataGate to be set by StartCompare match
+Bit 5	      EnableStop, R/W. Enables DataGate to be cleared by StopCompare match
+Bit 6	      ClearFIFO, R/W. Clears data FIFO and bit pointer when set (self clearing) 
+Bit 7	      DataGate, R/O. Real time DataGate state
+Bits 8..13    R/O, FIFO data count (0 to 32) count of 32 bit data words in FIFO
+Bits 16..20   R/O, ShiftCount (0..31 for 1 bit mode 0..3 for 8 bit PWM mode)
+Bit 21	      R/O, FIFO underun error bit (FIFO out of data)
+Bit 22	      R/O, FIFO overrun error bit (FIFO push when full) 	      
+Bits 23..31   9 bits R/W real time PWM_scale. PWM value = FIFO data * PWM_Scale
+              (256 = 100%) Numbers beyond 256 will wrap
+
+0x8D00	      Mode1 register (Setup)
+Bits 0..11    R/W, Clk pulse width in ClockLow units
+Bit 12 	      R/W DPLL timer select bit 0
+Bit 13        R/W DPLL timer select bit 1
+Bit 14        R/W DPLL timer select bit 2
+Bit 15        R/W DPLL timer enable, if set,dpainter count is sampled by DPLL timer, 
+    	      if clear, dpainter count is sampled by host read
+Bit 16        R/W PWM mode, if set FIFO data word is 4x 8 bit PWM
+    	      if clear, FIFO data word is 32 bits of on/off video data.
+	      PWM is synchronous with data rate (PWM base frequency is 256 * data rate)	  	   
+Bit 17	      FiftyPCClk, R/W. When set, clock output is 50% of data bit time
+    	      when clear clock width is set by clock width register in Mode1
+Bit 23	      R/W debug loop, if set prevents FIFO pop so repeats shift out of current FIFO output word	      
+Bits 24..31   R/W Off PWM value (when gated off)
+
+0x8E00	      StartCompare register
+Bits 0..15    R/W, 16 bit count compare register for DataGate Set
+
+0x8F00	      StopCompare register
+Bits 0..15    R/W, 16 bit count compare register for DataGate Clear
+
+0x9000	      Data register (W/O) 32 deep 32 wide FIFO for video data
+ 
+
+
