@@ -103,6 +103,7 @@ set_property IOSTANDARD LVTTL [get_ports {IOBITS[4]}]
 
 set_property PACKAGE_PIN P8 [get_ports {IOBITS[5]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[5]}]
+set_property PULLUP true [get_ports {IOBITS[5]}]
 
 set_property PACKAGE_PIN L2 [get_ports {IOBITS[6]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[6]}]
@@ -118,6 +119,7 @@ set_property IOSTANDARD LVTTL [get_ports {IOBITS[9]}]
 
 set_property PACKAGE_PIN H1 [get_ports {IOBITS[10]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[10]}]
+set_property PULLUP true [get_ports {IOBITS[10]}]
 
 set_property PACKAGE_PIN H2 [get_ports {IOBITS[11]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[11]}]
@@ -133,6 +135,7 @@ set_property IOSTANDARD LVTTL [get_ports {IOBITS[14]}]
 
 set_property PACKAGE_PIN E6 [get_ports {IOBITS[15]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[15]}]
+set_property PULLUP true [get_ports {IOBITS[15]}]
 
 set_property PACKAGE_PIN M6 [get_ports {IOBITS[16]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[16]}]
@@ -145,6 +148,7 @@ set_property IOSTANDARD LVTTL [get_ports {IOBITS[18]}]
 
 set_property PACKAGE_PIN H4 [get_ports {IOBITS[19]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[19]}]
+set_property PULLUP true [get_ports {IOBITS[19]}]
 
 set_property PACKAGE_PIN J3 [get_ports {IOBITS[20]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[20]}]
@@ -169,6 +173,7 @@ set_property IOSTANDARD LVTTL [get_ports {IOBITS[26]}]
 
 set_property PACKAGE_PIN P9 [get_ports {IOBITS[27]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[27]}]
+set_property PULLUP true [get_ports {IOBITS[27]}]
 
 set_property PACKAGE_PIN R7 [get_ports {IOBITS[28]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[28]}]
