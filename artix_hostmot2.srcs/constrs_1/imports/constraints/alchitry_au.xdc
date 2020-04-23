@@ -71,402 +71,305 @@ set_property IOSTANDARD LVTTL [get_ports {LEDS[7]}]
 set_property DRIVE 8 [get_ports {LEDS[7]}]
 set_property SLEW SLOW [get_ports {LEDS[7]}]
 
-set_property PACKAGE_PIN p16 [get_ports {USB_TX}]
-set_property IOSTANDARD LVCMOS33 [get_ports {USB_TX}]
+set_property PACKAGE_PIN P16 [get_ports USB_TX]
+set_property IOSTANDARD LVCMOS33 [get_ports USB_TX]
 
-set_property PACKAGE_PIN p15 [get_ports {USB_RX}]
-set_property IOSTANDARD LVCMOS33 [get_ports {USB_RX}]
+set_property PACKAGE_PIN P15 [get_ports USB_RX]
+set_property IOSTANDARD LVCMOS33 [get_ports USB_RX]
 
-set_property PACKAGE_PIN p14 [get_ports {ADC_MUXP[0]}]
+set_property PACKAGE_PIN P14 [get_ports {ADC_MUXP[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {ADC_MUXP[0]}]
 
-set_property PACKAGE_PIN m15 [get_ports {ADC_MUXP[1]}]
+set_property PACKAGE_PIN M15 [get_ports {ADC_MUXP[1]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {ADC_MUXP[1]}]
 
-set_property PACKAGE_PIN h8 [get_ports AVP]
-set_property PACKAGE_PIN j7 [get_ports AVN]
+set_property PACKAGE_PIN H8 [get_ports AVP]
+set_property PACKAGE_PIN J7 [get_ports AVN]
 
-set_property PACKAGE_PIN t8 [get_ports {IOBITS[0]}]
+set_property PACKAGE_PIN T8 [get_ports {IOBITS[0]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[0]}]
-set_property DRIVE 24 [get_ports {IOBITS[0]}]
 
-set_property PACKAGE_PIN t7 [get_ports {IOBITS[1]}]
+set_property PACKAGE_PIN T7 [get_ports {IOBITS[1]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[1]}]
-set_property DRIVE 24 [get_ports {IOBITS[1]}]
 
-set_property PACKAGE_PIN t5 [get_ports {IOBITS[2]}]
+set_property PACKAGE_PIN T5 [get_ports {IOBITS[2]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[2]}]
-set_property DRIVE 24 [get_ports {IOBITS[2]}]
 
-set_property PACKAGE_PIN r5 [get_ports {IOBITS[3]}]
+set_property PACKAGE_PIN R5 [get_ports {IOBITS[3]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[3]}]
-set_property DRIVE 24 [get_ports {IOBITS[3]}]
 
-set_property PACKAGE_PIN r8 [get_ports {IOBITS[4]}]
+set_property PACKAGE_PIN R8 [get_ports {IOBITS[4]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[4]}]
-set_property DRIVE 24 [get_ports {IOBITS[4]}]
 
-set_property PACKAGE_PIN p8 [get_ports {IOBITS[5]}]
+set_property PACKAGE_PIN P8 [get_ports {IOBITS[5]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[5]}]
-set_property DRIVE 24 [get_ports {IOBITS[5]}]
 
-set_property PACKAGE_PIN l2 [get_ports {IOBITS[6]}]
+set_property PACKAGE_PIN L2 [get_ports {IOBITS[6]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[6]}]
-set_property DRIVE 24 [get_ports {IOBITS[6]}]
 
-set_property PACKAGE_PIN l3 [get_ports {IOBITS[7]}]
+set_property PACKAGE_PIN L3 [get_ports {IOBITS[7]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[7]}]
-set_property DRIVE 24 [get_ports {IOBITS[7]}]
 
-set_property PACKAGE_PIN j1 [get_ports {IOBITS[8]}]
+set_property PACKAGE_PIN J1 [get_ports {IOBITS[8]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[8]}]
-set_property DRIVE 24 [get_ports {IOBITS[8]}]
 
-set_property PACKAGE_PIN k1 [get_ports {IOBITS[9]}]
+set_property PACKAGE_PIN K1 [get_ports {IOBITS[9]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[9]}]
-set_property DRIVE 24 [get_ports {IOBITS[9]}]
 
-set_property PACKAGE_PIN h1 [get_ports {IOBITS[10]}]
+set_property PACKAGE_PIN H1 [get_ports {IOBITS[10]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[10]}]
-set_property DRIVE 24 [get_ports {IOBITS[10]}]
 
-set_property PACKAGE_PIN h2 [get_ports {IOBITS[11]}]
+set_property PACKAGE_PIN H2 [get_ports {IOBITS[11]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[11]}]
-set_property DRIVE 24 [get_ports {IOBITS[11]}]
 
-set_property PACKAGE_PIN g1 [get_ports {IOBITS[12]}]
+set_property PACKAGE_PIN G1 [get_ports {IOBITS[12]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[12]}]
-set_property DRIVE 24 [get_ports {IOBITS[12]}]
 
-set_property PACKAGE_PIN g2 [get_ports {IOBITS[13]}]
+set_property PACKAGE_PIN G2 [get_ports {IOBITS[13]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[13]}]
-set_property DRIVE 24 [get_ports {IOBITS[13]}]
 
-set_property PACKAGE_PIN k5 [get_ports {IOBITS[14]}]
+set_property PACKAGE_PIN K5 [get_ports {IOBITS[14]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[14]}]
-set_property DRIVE 24 [get_ports {IOBITS[14]}]
 
-set_property PACKAGE_PIN e6 [get_ports {IOBITS[15]}]
+set_property PACKAGE_PIN E6 [get_ports {IOBITS[15]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[15]}]
-set_property DRIVE 24 [get_ports {IOBITS[15]}]
 
-set_property PACKAGE_PIN m6 [get_ports {IOBITS[16]}]
+set_property PACKAGE_PIN M6 [get_ports {IOBITS[16]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[16]}]
-set_property DRIVE 24 [get_ports {IOBITS[16]}]
 
-set_property PACKAGE_PIN n6 [get_ports {IOBITS[17]}]
+set_property PACKAGE_PIN N6 [get_ports {IOBITS[17]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[17]}]
-set_property DRIVE 24 [get_ports {IOBITS[17]}]
 
-set_property PACKAGE_PIN h5 [get_ports {IOBITS[18]}]
+set_property PACKAGE_PIN H5 [get_ports {IOBITS[18]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[18]}]
-set_property DRIVE 24 [get_ports {IOBITS[18]}]
 
-set_property PACKAGE_PIN h4 [get_ports {IOBITS[19]}]
+set_property PACKAGE_PIN H4 [get_ports {IOBITS[19]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[19]}]
-set_property DRIVE 24 [get_ports {IOBITS[19]}]
 
-set_property PACKAGE_PIN j3 [get_ports {IOBITS[20]}]
+set_property PACKAGE_PIN J3 [get_ports {IOBITS[20]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[20]}]
-set_property DRIVE 24 [get_ports {IOBITS[20]}]
 
-set_property PACKAGE_PIN h3 [get_ports {IOBITS[21]}]
+set_property PACKAGE_PIN H3 [get_ports {IOBITS[21]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[21]}]
-set_property DRIVE 24 [get_ports {IOBITS[21]}]
 
-set_property PACKAGE_PIN j5 [get_ports {IOBITS[22]}]
+set_property PACKAGE_PIN J5 [get_ports {IOBITS[22]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[22]}]
-set_property DRIVE 24 [get_ports {IOBITS[22]}]
 
-set_property PACKAGE_PIN j4 [get_ports {IOBITS[23]}]
+set_property PACKAGE_PIN J4 [get_ports {IOBITS[23]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[23]}]
-set_property DRIVE 24 [get_ports {IOBITS[23]}]
 
-set_property PACKAGE_PIN k3 [get_ports {IOBITS[24]}]
+set_property PACKAGE_PIN K3 [get_ports {IOBITS[24]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[24]}]
-set_property DRIVE 24 [get_ports {IOBITS[24]}]
 
-set_property PACKAGE_PIN k2 [get_ports {IOBITS[25]}]
+set_property PACKAGE_PIN K2 [get_ports {IOBITS[25]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[25]}]
-set_property DRIVE 24 [get_ports {IOBITS[25]}]
 
-set_property PACKAGE_PIN n9 [get_ports {IOBITS[26]}]
+set_property PACKAGE_PIN N9 [get_ports {IOBITS[26]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[26]}]
-set_property DRIVE 24 [get_ports {IOBITS[26]}]
 
-set_property PACKAGE_PIN p9 [get_ports {IOBITS[27]}]
+set_property PACKAGE_PIN P9 [get_ports {IOBITS[27]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[27]}]
-set_property DRIVE 24 [get_ports {IOBITS[27]}]
 
-set_property PACKAGE_PIN r7 [get_ports {IOBITS[28]}]
+set_property PACKAGE_PIN R7 [get_ports {IOBITS[28]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[28]}]
-set_property DRIVE 24 [get_ports {IOBITS[28]}]
 
-set_property PACKAGE_PIN r6 [get_ports {IOBITS[29]}]
+set_property PACKAGE_PIN R6 [get_ports {IOBITS[29]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[29]}]
-set_property DRIVE 24 [get_ports {IOBITS[29]}]
 
-set_property PACKAGE_PIN t9 [get_ports {IOBITS[30]}]
+set_property PACKAGE_PIN T9 [get_ports {IOBITS[30]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[30]}]
-set_property DRIVE 24 [get_ports {IOBITS[30]}]
 
-set_property PACKAGE_PIN t10 [get_ports {IOBITS[31]}]
+set_property PACKAGE_PIN T10 [get_ports {IOBITS[31]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[31]}]
-set_property DRIVE 24 [get_ports {IOBITS[31]}]
 
-set_property PACKAGE_PIN d1 [get_ports {IOBITS[32]}]
+set_property PACKAGE_PIN D1 [get_ports {IOBITS[32]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[32]}]
-set_property DRIVE 24 [get_ports {IOBITS[32]}]
 
-set_property PACKAGE_PIN e2 [get_ports {IOBITS[33]}]
+set_property PACKAGE_PIN E2 [get_ports {IOBITS[33]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[33]}]
-set_property DRIVE 24 [get_ports {IOBITS[33]}]
 
-set_property PACKAGE_PIN a2 [get_ports {IOBITS[34]}]
+set_property PACKAGE_PIN A2 [get_ports {IOBITS[34]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[34]}]
-set_property DRIVE 24 [get_ports {IOBITS[34]}]
 
-set_property PACKAGE_PIN b2 [get_ports {IOBITS[35]}]
+set_property PACKAGE_PIN B2 [get_ports {IOBITS[35]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[35]}]
-set_property DRIVE 24 [get_ports {IOBITS[35]}]
 
-set_property PACKAGE_PIN e1 [get_ports {IOBITS[36]}]
+set_property PACKAGE_PIN E1 [get_ports {IOBITS[36]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[36]}]
-set_property DRIVE 24 [get_ports {IOBITS[36]}]
 
-set_property PACKAGE_PIN f2 [get_ports {IOBITS[37]}]
+set_property PACKAGE_PIN F2 [get_ports {IOBITS[37]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[37]}]
-set_property DRIVE 24 [get_ports {IOBITS[37]}]
 
-set_property PACKAGE_PIN f3 [get_ports {IOBITS[38]}]
+set_property PACKAGE_PIN F3 [get_ports {IOBITS[38]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[38]}]
-set_property DRIVE 24 [get_ports {IOBITS[38]}]
 
-set_property PACKAGE_PIN f4 [get_ports {IOBITS[39]}]
+set_property PACKAGE_PIN F4 [get_ports {IOBITS[39]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[39]}]
-set_property DRIVE 24 [get_ports {IOBITS[39]}]
 
-set_property PACKAGE_PIN a3 [get_ports {IOBITS[40]}]
+set_property PACKAGE_PIN A3 [get_ports {IOBITS[40]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[40]}]
-set_property DRIVE 24 [get_ports {IOBITS[40]}]
 
-set_property PACKAGE_PIN b4 [get_ports {IOBITS[41]}]
+set_property PACKAGE_PIN B4 [get_ports {IOBITS[41]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[41]}]
-set_property DRIVE 24 [get_ports {IOBITS[41]}]
 
-set_property PACKAGE_PIN a4 [get_ports {IOBITS[42]}]
+set_property PACKAGE_PIN A4 [get_ports {IOBITS[42]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[42]}]
-set_property DRIVE 24 [get_ports {IOBITS[42]}]
 
-set_property PACKAGE_PIN a5 [get_ports {IOBITS[43]}]
+set_property PACKAGE_PIN A5 [get_ports {IOBITS[43]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[43]}]
-set_property DRIVE 24 [get_ports {IOBITS[43]}]
 
-set_property PACKAGE_PIN b5 [get_ports {IOBITS[44]}]
+set_property PACKAGE_PIN B5 [get_ports {IOBITS[44]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[44]}]
-set_property DRIVE 24 [get_ports {IOBITS[44]}]
 
-set_property PACKAGE_PIN b6 [get_ports {IOBITS[45]}]
+set_property PACKAGE_PIN B6 [get_ports {IOBITS[45]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[45]}]
-set_property DRIVE 24 [get_ports {IOBITS[45]}]
 
-set_property PACKAGE_PIN a7 [get_ports {IOBITS[46]}]
+set_property PACKAGE_PIN A7 [get_ports {IOBITS[46]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[46]}]
-set_property DRIVE 24 [get_ports {IOBITS[46]}]
 
-set_property PACKAGE_PIN b7 [get_ports {IOBITS[47]}]
+set_property PACKAGE_PIN B7 [get_ports {IOBITS[47]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[47]}]
-set_property DRIVE 24 [get_ports {IOBITS[47]}]
 
-set_property PACKAGE_PIN c7 [get_ports {IOBITS[48]}]
+set_property PACKAGE_PIN C7 [get_ports {IOBITS[48]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[48]}]
-set_property DRIVE 24 [get_ports {IOBITS[48]}]
 
-set_property PACKAGE_PIN c6 [get_ports {IOBITS[49]}]
+set_property PACKAGE_PIN C6 [get_ports {IOBITS[49]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[49]}]
-set_property DRIVE 24 [get_ports {IOBITS[49]}]
 
-set_property PACKAGE_PIN d6 [get_ports {IOBITS[50]}]
+set_property PACKAGE_PIN D6 [get_ports {IOBITS[50]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[50]}]
-set_property DRIVE 24 [get_ports {IOBITS[50]}]
 
-set_property PACKAGE_PIN d5 [get_ports {IOBITS[51]}]
+set_property PACKAGE_PIN D5 [get_ports {IOBITS[51]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[51]}]
-set_property DRIVE 24 [get_ports {IOBITS[51]}]
 
-set_property PACKAGE_PIN f5 [get_ports {IOBITS[52]}]
+set_property PACKAGE_PIN F5 [get_ports {IOBITS[52]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[52]}]
-set_property DRIVE 24 [get_ports {IOBITS[52]}]
 
-set_property PACKAGE_PIN e5 [get_ports {IOBITS[53]}]
+set_property PACKAGE_PIN E5 [get_ports {IOBITS[53]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[53]}]
-set_property DRIVE 24 [get_ports {IOBITS[53]}]
 
-set_property PACKAGE_PIN g5 [get_ports {IOBITS[54]}]
+set_property PACKAGE_PIN G5 [get_ports {IOBITS[54]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[54]}]
-set_property DRIVE 24 [get_ports {IOBITS[54]}]
 
-set_property PACKAGE_PIN g4 [get_ports {IOBITS[55]}]
+set_property PACKAGE_PIN G4 [get_ports {IOBITS[55]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[55]}]
-set_property DRIVE 24 [get_ports {IOBITS[55]}]
 
-set_property PACKAGE_PIN d4 [get_ports {IOBITS[56]}]
+set_property PACKAGE_PIN D4 [get_ports {IOBITS[56]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[56]}]
-set_property DRIVE 24 [get_ports {IOBITS[56]}]
 
-set_property PACKAGE_PIN c4 [get_ports {IOBITS[57]}]
+set_property PACKAGE_PIN C4 [get_ports {IOBITS[57]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[57]}]
-set_property DRIVE 24 [get_ports {IOBITS[57]}]
 
-set_property PACKAGE_PIN e3 [get_ports {IOBITS[58]}]
+set_property PACKAGE_PIN E3 [get_ports {IOBITS[58]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[58]}]
-set_property DRIVE 24 [get_ports {IOBITS[58]}]
 
-set_property PACKAGE_PIN d3 [get_ports {IOBITS[59]}]
+set_property PACKAGE_PIN D3 [get_ports {IOBITS[59]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[59]}]
-set_property DRIVE 24 [get_ports {IOBITS[59]}]
 
-set_property PACKAGE_PIN c3 [get_ports {IOBITS[60]}]
+set_property PACKAGE_PIN C3 [get_ports {IOBITS[60]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[60]}]
-set_property DRIVE 24 [get_ports {IOBITS[60]}]
 
-set_property PACKAGE_PIN c2 [get_ports {IOBITS[61]}]
+set_property PACKAGE_PIN C2 [get_ports {IOBITS[61]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[61]}]
-set_property DRIVE 24 [get_ports {IOBITS[61]}]
 
-set_property PACKAGE_PIN c1 [get_ports {IOBITS[62]}]
+set_property PACKAGE_PIN C1 [get_ports {IOBITS[62]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[62]}]
-set_property DRIVE 24 [get_ports {IOBITS[62]}]
 
-set_property PACKAGE_PIN b1 [get_ports {IOBITS[63]}]
+set_property PACKAGE_PIN B1 [get_ports {IOBITS[63]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[63]}]
-set_property DRIVE 24 [get_ports {IOBITS[63]}]
 
-set_property PACKAGE_PIN t13 [get_ports {IOBITS[64]}]
+set_property PACKAGE_PIN T13 [get_ports {IOBITS[64]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[64]}]
-set_property DRIVE 24 [get_ports {IOBITS[64]}]
 
-set_property PACKAGE_PIN r13 [get_ports {IOBITS[65]}]
+set_property PACKAGE_PIN R13 [get_ports {IOBITS[65]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[65]}]
-set_property DRIVE 24 [get_ports {IOBITS[65]}]
 
-set_property PACKAGE_PIN t12 [get_ports {IOBITS[66]}]
+set_property PACKAGE_PIN T12 [get_ports {IOBITS[66]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[66]}]
-set_property DRIVE 24 [get_ports {IOBITS[66]}]
 
-set_property PACKAGE_PIN r12 [get_ports {IOBITS[67]}]
+set_property PACKAGE_PIN R12 [get_ports {IOBITS[67]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[67]}]
-set_property DRIVE 24 [get_ports {IOBITS[67]}]
 
-set_property PACKAGE_PIN r11 [get_ports {IOBITS[68]}]
+set_property PACKAGE_PIN R11 [get_ports {IOBITS[68]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[68]}]
-set_property DRIVE 24 [get_ports {IOBITS[68]}]
 
-set_property PACKAGE_PIN r10 [get_ports {IOBITS[69]}]
+set_property PACKAGE_PIN R10 [get_ports {IOBITS[69]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[69]}]
-set_property DRIVE 24 [get_ports {IOBITS[69]}]
 
-set_property PACKAGE_PIN n2 [get_ports {IOBITS[70]}]
+set_property PACKAGE_PIN N2 [get_ports {IOBITS[70]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[70]}]
-set_property DRIVE 24 [get_ports {IOBITS[70]}]
 
-set_property PACKAGE_PIN n3 [get_ports {IOBITS[71]}]
+set_property PACKAGE_PIN N3 [get_ports {IOBITS[71]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[71]}]
-set_property DRIVE 24 [get_ports {IOBITS[71]}]
 
-set_property PACKAGE_PIN p3 [get_ports {IOBITS[72]}]
+set_property PACKAGE_PIN P3 [get_ports {IOBITS[72]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[72]}]
-set_property DRIVE 24 [get_ports {IOBITS[72]}]
 
-set_property PACKAGE_PIN p4 [get_ports {IOBITS[73]}]
+set_property PACKAGE_PIN P4 [get_ports {IOBITS[73]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[73]}]
-set_property DRIVE 24 [get_ports {IOBITS[73]}]
 
-set_property PACKAGE_PIN m4 [get_ports {IOBITS[74]}]
+set_property PACKAGE_PIN M4 [get_ports {IOBITS[74]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[74]}]
-set_property DRIVE 24 [get_ports {IOBITS[74]}]
 
-set_property PACKAGE_PIN l4 [get_ports {IOBITS[75]}]
+set_property PACKAGE_PIN L4 [get_ports {IOBITS[75]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[75]}]
-set_property DRIVE 24 [get_ports {IOBITS[75]}]
 
-set_property PACKAGE_PIN n4 [get_ports {IOBITS[76]}]
+set_property PACKAGE_PIN N4 [get_ports {IOBITS[76]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[76]}]
-set_property DRIVE 24 [get_ports {IOBITS[76]}]
 
-set_property PACKAGE_PIN m5 [get_ports {IOBITS[77]}]
+set_property PACKAGE_PIN M5 [get_ports {IOBITS[77]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[77]}]
-set_property DRIVE 24 [get_ports {IOBITS[77]}]
 
-set_property PACKAGE_PIN l5 [get_ports {IOBITS[78]}]
+set_property PACKAGE_PIN L5 [get_ports {IOBITS[78]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[78]}]
-set_property DRIVE 24 [get_ports {IOBITS[78]}]
 
-set_property PACKAGE_PIN p5 [get_ports {IOBITS[79]}]
+set_property PACKAGE_PIN P5 [get_ports {IOBITS[79]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[79]}]
-set_property DRIVE 24 [get_ports {IOBITS[79]}]
 
-set_property PACKAGE_PIN t4 [get_ports {IOBITS[80]}]
+set_property PACKAGE_PIN T4 [get_ports {IOBITS[80]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[80]}]
-set_property DRIVE 24 [get_ports {IOBITS[80]}]
 
-set_property PACKAGE_PIN t3 [get_ports {IOBITS[81]}]
+set_property PACKAGE_PIN T3 [get_ports {IOBITS[81]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[81]}]
-set_property DRIVE 24 [get_ports {IOBITS[81]}]
 
-set_property PACKAGE_PIN r3 [get_ports {IOBITS[82]}]
+set_property PACKAGE_PIN R3 [get_ports {IOBITS[82]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[82]}]
-set_property DRIVE 24 [get_ports {IOBITS[82]}]
 
-set_property PACKAGE_PIN t2 [get_ports {IOBITS[83]}]
+set_property PACKAGE_PIN T2 [get_ports {IOBITS[83]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[83]}]
-set_property DRIVE 24 [get_ports {IOBITS[83]}]
 
-set_property PACKAGE_PIN r2 [get_ports {IOBITS[84]}]
+set_property PACKAGE_PIN R2 [get_ports {IOBITS[84]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[84]}]
-set_property DRIVE 24 [get_ports {IOBITS[84]}]
 
-set_property PACKAGE_PIN r1 [get_ports {IOBITS[85]}]
+set_property PACKAGE_PIN R1 [get_ports {IOBITS[85]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[85]}]
-set_property DRIVE 24 [get_ports {IOBITS[85]}]
 
-set_property PACKAGE_PIN n1 [get_ports {IOBITS[86]}]
+set_property PACKAGE_PIN N1 [get_ports {IOBITS[86]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[86]}]
-set_property DRIVE 24 [get_ports {IOBITS[86]}]
 
-set_property PACKAGE_PIN p1 [get_ports {IOBITS[87]}]
+set_property PACKAGE_PIN P1 [get_ports {IOBITS[87]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[87]}]
-set_property DRIVE 24 [get_ports {IOBITS[87]}]
 
-set_property PACKAGE_PIN m2 [get_ports {IOBITS[88]}]
+set_property PACKAGE_PIN M2 [get_ports {IOBITS[88]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[88]}]
-set_property DRIVE 24 [get_ports {IOBITS[88]}]
 
-set_property PACKAGE_PIN m1 [get_ports {IOBITS[89]}]
+set_property PACKAGE_PIN M1 [get_ports {IOBITS[89]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[89]}]
-set_property DRIVE 24 [get_ports {IOBITS[89]}]
 
-set_property PACKAGE_PIN n13 [get_ports {IOBITS[90]}]
+set_property PACKAGE_PIN N13 [get_ports {IOBITS[90]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[90]}]
-set_property DRIVE 24 [get_ports {IOBITS[90]}]
 
-set_property PACKAGE_PIN p13 [get_ports {IOBITS[91]}]
+set_property PACKAGE_PIN P13 [get_ports {IOBITS[91]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[91]}]
-set_property DRIVE 24 [get_ports {IOBITS[91]}]
 
-set_property PACKAGE_PIN n11 [get_ports {IOBITS[92]}]
+set_property PACKAGE_PIN N11 [get_ports {IOBITS[92]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[92]}]
-set_property DRIVE 24 [get_ports {IOBITS[92]}]
 
-set_property PACKAGE_PIN n12 [get_ports {IOBITS[93]}]
+set_property PACKAGE_PIN N12 [get_ports {IOBITS[93]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[93]}]
-set_property DRIVE 24 [get_ports {IOBITS[93]}]
 
-set_property PACKAGE_PIN p10 [get_ports {IOBITS[94]}]
+set_property PACKAGE_PIN P10 [get_ports {IOBITS[94]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[94]}]
-set_property DRIVE 24 [get_ports {IOBITS[94]}]
 
-set_property PACKAGE_PIN p11 [get_ports {IOBITS[95]}]
+set_property PACKAGE_PIN P11 [get_ports {IOBITS[95]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[95]}]
-set_property DRIVE 24 [get_ports {IOBITS[95]}]
-
