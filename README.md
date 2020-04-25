@@ -9,8 +9,8 @@ this is a modified version of the [mesa hostmot2 firmware](https://github.com/Li
 
 | LINE  | RPI PIN | AU PIN              |
 | ----- | ------- | ------------------- |
-| MOSI  | P1-19   | P17  (Bank C:48)    |
-| MISO  | P1-21   | P15  (Bank C:49)    |
+| MOSI  | P1-19   | P10  (Bank C:48)    |
+| MISO  | P1-21   | P11  (Bank C:49)    |
 | CLK   | P1-23   | N11  (Bank C:45)    |
 | CE0   | P1-24   | N12  (Bank C:46)    |
 
