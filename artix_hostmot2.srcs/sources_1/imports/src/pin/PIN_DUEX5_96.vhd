@@ -74,10 +74,10 @@ package PIN_DUEX5_96 is
 	(WatchDogTag,           x"00",  ClockLowTag,        x"01",  WatchDogTimeAddr&PadT,          WatchDogNumRegs,        x"00",  WatchDogMPBitMask),
 	(IOPortTag,             x"00",  ClockLowTag,        x"03",  PortAddr&PadT,                  IOPortNumRegs,          x"00",  IOPortMPBitMask),
 	(LEDTag,                x"00",  ClockLowTag,        x"01",  LEDAddr&PadT,                   LEDNumRegs,             x"00",  LEDMPBitMask),
+    (ADCTag,                x"00",  ClockLowTag,        x"01",  ADCAddr&PadT,                   ADCNumRegs,             x"00",  ADCMPBitMask),
+    (BSPITag,               x"00",  ClockLowTag,        x"04",  BSPIDataAddr&PadT,              BSPINumRegs,            x"11",  BSPIMPBitMask),
+    (PWMTag,                x"00",  ClockHighTag,       x"05",  PWMValAddr&PadT,                PWMNumRegs,             x"00",  PWMMPBitMask),
 	(StepGenTag,            x"02",  ClockLowTag,        x"06",  StepGenRateAddr&PadT,           StepGenNumRegs,         x"00",  StepGenMPBitMask),
-	(PWMTag,                x"00",  ClockHighTag,       x"05",  PWMValAddr&PadT,                PWMNumRegs,             x"00",  PWMMPBitMask),
-	(ADCTag,                x"00",  ClockLowTag,        x"01",  ADCAddr&PadT,                   ADCNumRegs,             x"00",  ADCMPBitMask),
-	(BSPITag,               x"00",  ClockLowTag,        x"04",  BSPIDataAddr&PadT,              BSPINumRegs,            x"11",  BSPIMPBitMask),
 	(QcountTag,             x"02",  ClockLowTag,        x"06",  QcounterAddr&PadT,              QCounterNumRegs,        x"00",  QCounterMPBitMask),
 	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
 	(NullTag,               x"00",  NullTag,            x"00",  NullAddr&PadT,                  x"00",                  x"00",  x"00000000"),
@@ -171,33 +171,33 @@ package PIN_DUEX5_96 is
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 61
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 62
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 63
-		IOPortTag & x"00" & QCountTag & QCountQAPin,          -- I/O 64
-		IOPortTag & x"00" & QCountTag & QCountQBPin,          -- I/O 65
-		IOPortTag & x"00" & QCountTag & QCountIdxPin,         -- I/O 66
+		IOPortTag & x"05" & StepGenTag & StepGenStepPin,      -- I/O 64
+		IOPortTag & x"05" & StepGenTag & StepGenDirPin,       -- I/O 65
+		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 66
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 67
-		IOPortTag & x"05" & StepGenTag & StepGenStepPin,      -- I/O 68
-		IOPortTag & x"00" & StepGenTag & StepGenDirPin,       -- I/O 69
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 70
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 71
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 72
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 73
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 74
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 75
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 76
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 77
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 78
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 79
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 80
+		IOPortTag & x"00" & QCountTag & QCountQAPin,          -- I/O 68
+		IOPortTag & x"00" & QCountTag & QCountQBPin,          -- I/O 69
+		IOPortTag & x"01" & QCountTag & QCountQAPin,          -- I/O 70
+		IOPortTag & x"01" & QCountTag & QCountQBPin,          -- I/O 71
+		IOPortTag & x"02" & QCountTag & QCountQAPin,          -- I/O 72
+		IOPortTag & x"02" & QCountTag & QCountQBPin,          -- I/O 73
+		IOPortTag & x"03" & QCountTag & QCountQAPin,          -- I/O 74
+		IOPortTag & x"03" & QCountTag & QCountQBPin,          -- I/O 75
+		IOPortTag & x"04" & QCountTag & QCountQAPin,          -- I/O 76
+		IOPortTag & x"04" & QCountTag & QCountQBPin,          -- I/O 77
+		IOPortTag & x"05" & QCountTag & QCountQAPin,          -- I/O 78
+		IOPortTag & x"05" & QCountTag & QCountQBPin,          -- I/O 79
+		IOPortTag & x"00" & QCountTag & QCountIdxPin,         -- I/O 80
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 81
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 82
+		IOPortTag & x"01" & QCountTag & QCountIdxPin,         -- I/O 82
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 83
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 84
+		IOPortTag & x"02" & QCountTag & QCountIdxPin,         -- I/O 84
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 85
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 86
+		IOPortTag & x"03" & QCountTag & QCountIdxPin,         -- I/O 86
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 87
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 88
+		IOPortTag & x"04" & QCountTag & QCountIdxPin,         -- I/O 88
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 89
-		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 90
+		IOPortTag & x"05" & QCountTag & QCountIdxPin,         -- I/O 90
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 91
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 92
 		IOPortTag & x"00" & NullTag & x"00",                  -- I/O 93

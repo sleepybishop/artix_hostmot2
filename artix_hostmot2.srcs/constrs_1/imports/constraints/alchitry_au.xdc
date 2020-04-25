@@ -367,14 +367,14 @@ set_property IOSTANDARD LVTTL [get_ports {IOBITS[90]}]
 set_property PACKAGE_PIN P13 [get_ports {IOBITS[91]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[91]}]
 
-set_property PACKAGE_PIN T15 [get_ports {IOBITS[92]}]
+set_property PACKAGE_PIN R16 [get_ports {IOBITS[92]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[92]}]
 
-set_property PACKAGE_PIN T14 [get_ports {IOBITS[93]}]
+set_property PACKAGE_PIN R15 [get_ports {IOBITS[93]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[93]}]
 
-set_property PACKAGE_PIN R16 [get_ports {IOBITS[94]}]
+set_property PACKAGE_PIN T14 [get_ports {IOBITS[94]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[94]}]
 
-set_property PACKAGE_PIN R15 [get_ports {IOBITS[95]}]
+set_property PACKAGE_PIN T15 [get_ports {IOBITS[95]}]
 set_property IOSTANDARD LVTTL [get_ports {IOBITS[95]}]
